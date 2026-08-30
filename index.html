@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- ============================================================================
+     HEAD SECTION - Meta tags, title, and stylesheets
+     ============================================================================ -->
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Page Title -->
+    <title>Mon-Tube | Video Sharing Platform</title>
+    
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<!-- ============================================================================
+     BODY SECTION - Main content structure
+     ============================================================================ -->
+<body>
+
+    <!-- ========================================================================
+         HEADER SECTION - Navigation bar with logo, search, and user controls
+         ======================================================================== -->
+    <header class="header">
+        <div class="header-container">
+
+            <!-- Logo/Brand Section -->
+            <div class="logo-section">
+                <a href="/" class="logo">
+                    <span class="logo-text">Mon-Tube</span>
+                </a>
+            </div>
+
+            <!-- Search Bar Section -->
+            <div class="search-section">
+                <form class="search-form" action="#" method="GET">
+                    <input 
+                        type="text" 
+                        class="search-input" 
+                        placeholder="Search videos, channels, playlists..."
+                        aria-label="Search"
+                    >
+                    <button type="submit" class="search-button" aria-label="Search">
+                        🔍
+                    </button>
+                </form>
+            </div>
+
+            <!-- User Controls Section -->
+            <div class="user-section">
+                <button class="icon-button" aria-label="Upload video">
+                    ⬆️
+                </button>
+                <button class="icon-button" aria-label="Notifications">
+                    🔔
+                </button>
+                <button class="profile-button" aria-label="Profile menu">
+                    👤
+                </button>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- ====================================================================== -->
+
+    <!-- ====================================================================== -->
+    <!-- MAIN CONTAINER - Sidebar and content layout -->
+    <!-- ====================================================================== -->
+    <div class="container">
+
+        <!-- ================================================================
+             SIDEBAR NAVIGATION - Left side menu
+             ================================================================ -->
+        <aside class="sidebar">
+
+            <!-- Primary Navigation Menu -->
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active">
+                            🏠 Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            🔍 Explore
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            📺 Subscriptions
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Secondary Navigation Menu -->
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            📚 Library
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            ⏱️ History
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            ⏲️ Watch Later
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            👍 Liked Videos
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+        </aside>
+
+        <!-- ================================================================
+             MAIN CONTENT AREA - Videos and filters
+             ================================================================ -->
+        <main class="main-content">
+
+            <!-- Page Header Section -->
+            <section class="content-header">
+                <h1 class="page-title">Recommended for You</h1>
+            </section>
+
+            <!-- Category Filter Buttons -->
+            <section class="category-filters">
+                <div class="filter-buttons">
+                    <button class="filter-btn active">All</button>
+                    <button class="filter-btn">Gaming</button>
+                    <button class="filter-btn">Music</button>
+                    <button class="filter-btn">Technology</button>
+                    <button class="filter-btn">Education</button>
+                    <button class="filter-btn">Sports</button>
+                    <button class="filter-btn">Travel</button>
+                    <button class="filter-btn">Cooking</button>
+                </div>
+            </section>
+
+            <!-- Video Grid Container -->
+            <section class="video-grid">
+                <!-- Video Card 1 -->
+                <article class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://via.placeholder.com/320x180?text=Video+1" alt="Video thumbnail">
+                        <span class="video-duration">12:45</span>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-avatar">
+                            <img src="https://via.placeholder.com/40x40?text=CH1" alt="Channel avatar">
+                        </div>
+                        <div class="video-details">
+                            <h3 class="video-title">Amazing Discoveries in Modern Technology</h3>
+                            <p class="video-channel">Tech Explore Channel</p>
+                            <p class="video-meta">245K views • 2 days ago</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Video Card 2 -->
+                <article class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://via.placeholder.com/320x180?text=Video+2" alt="Video thumbnail">
+                        <span class="video-duration">8:30</span>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-avatar">
+                            <img src="https://via.placeholder.com/40x40?text=CH2" alt="Channel avatar">
+                        </div>
+                        <div class="video-details">
+                            <h3 class="video-title">Complete Guide to Morning Routine</h3>
+                            <p class="video-channel">Daily Wellness Tips</p>
+                            <p class="video-meta">1.2M views • 1 week ago</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Video Card 3 -->
+                <article class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://via.placeholder.com/320x180?text=Video+3" alt="Video thumbnail">
+                        <span class="video-duration">15:12</span>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-avatar">
+                            <img src="https://via.placeholder.com/40x40?text=CH3" alt="Channel avatar">
+                        </div>
+                        <div class="video-details">
+                            <h3 class="video-title">Gaming Tournament Highlights 2024</h3>
+                            <p class="video-channel">Pro Gaming Arena</p>
+                            <p class="video-meta">892K views • 3 days ago</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Video Card 4 -->
+                <article class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://via.placeholder.com/320x180?text=Video+4" alt="Video thumbnail">
+                        <span class="video-duration">22:05</span>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-avatar">
+                            <img src="https://via.placeholder.com/40x40?text=CH4" alt="Channel avatar">
+                        </div>
+                        <div class="video-details">
+                            <h3 class="video-title">Cooking the Perfect Pasta from Scratch</h3>
+                            <p class="video-channel">Culinary Masterclass</p>
+                            <p class="video-meta">567K views • 5 days ago</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Video Card 5 -->
+                <article class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://via.placeholder.com/320x180?text=Video+5" alt="Video thumbnail">
+                        <span class="video-duration">19:33</span>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-avatar">
+                            <img src="https://via.placeholder.com/40x40?text=CH5" alt="Channel avatar">
+                        </div>
+                        <div class="video-details">
+                            <h3 class="video-title">Travel Vlog: Exploring Hidden Gems in Europe</h3>
+                            <p class="video-channel">World Wanderer</p>
+                            <p class="video-meta">2.3M views • 1 day ago</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Video Card 6 -->
+                <article class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://via.placeholder.com/320x180?text=Video+6" alt="Video thumbnail">
+                        <span class="video-duration">11:20</span>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-avatar">
+                            <img src="https://via.placeholder.com/40x40?text=CH6" alt="Channel avatar">
+                        </div>
+                        <div class="video-details">
+                            <h3 class="video-title">Web Development Tips for Beginners</h3>
+                            <p class="video-channel">Code Academy</p>
+                            <p class="video-meta">445K views • 4 days ago</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Video Card 7 -->
+                <article class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://via.placeholder.com/320x180?text=Video+7" alt="Video thumbnail">
+                        <span class="video-duration">30:15</span>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-avatar">
+                            <img src="https://via.placeholder.com/40x40?text=CH7" alt="Channel avatar">
+                        </div>
+                        <div class="video-details">
+                            <h3 class="video-title">Fitness Challenge: 30 Days Transformation</h3>
+                            <p class="video-channel">Fitness Revolution</p>
+                            <p class="video-meta">1.8M views • 2 weeks ago</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Video Card 8 -->
+                <article class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://via.placeholder.com/320x180?text=Video+8" alt="Video thumbnail">
+                        <span class="video-duration">13:47</span>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-avatar">
+                            <img src="https://via.placeholder.com/40x40?text=CH8" alt="Channel avatar">
+                        </div>
+                        <div class="video-details">
+                            <h3 class="video-title">Music Production Studio Tour and Equipment Guide</h3>
+                            <p class="video-channel">Sound Studio Secrets</p>
+                            <p class="video-meta">634K views • 6 days ago</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Video Card 9 -->
+                <article class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://via.placeholder.com/320x180?text=Video+9" alt="Video thumbnail">
+                        <span class="video-duration">25:58</span>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-avatar">
+                            <img src="https://via.placeholder.com/40x40?text=CH9" alt="Channel avatar">
+                        </div>
+                        <div class="video-details">
+                            <h3 class="video-title">Documentary: The History of Animation</h3>
+                            <p class="video-channel">Creative Minds Studio</p>
+                            <p class="video-meta">756K views • 10 days ago</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Video Card 10 -->
+                <article class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://via.placeholder.com/320x180?text=Video+10" alt="Video thumbnail">
+                        <span class="video-duration">16:42</span>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-avatar">
+                            <img src="https://via.placeholder.com/40x40?text=CH10" alt="Channel avatar">
+                        </div>
+                        <div class="video-details">
+                            <h3 class="video-title">Photography Masterclass: Lighting and Composition</h3>
+                            <p class="video-channel">Visual Arts Academy</p>
+                            <p class="video-meta">328K views • 3 weeks ago</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Video Card 11 -->
+                <article class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://via.placeholder.com/320x180?text=Video+11" alt="Video thumbnail">
+                        <span class="video-duration">9:55</span>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-avatar">
+                            <img src="https://via.placeholder.com/40x40?text=CH11" alt="Channel avatar">
+                        </div>
+                        <div class="video-details">
+                            <h3 class="video-title">DIY Home Improvement Projects on a Budget</h3>
+                            <p class="video-channel">Home & Design</p>
+                            <p class="video-meta">912K views • 8 days ago</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Video Card 12 -->
+                <article class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://via.placeholder.com/320x180?text=Video+12" alt="Video thumbnail">
+                        <span class="video-duration">21:18</span>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-avatar">
+                            <img src="https://via.placeholder.com/40x40?text=CH12" alt="Channel avatar">
+                        </div>
+                        <div class="video-details">
+                            <h3 class="video-title">Space Exploration: Latest NASA Missions Explained</h3>
+                            <p class="video-channel">Science Explorer</p>
+                            <p class="video-meta">1.5M views • 12 days ago</p>
+                        </div>
+                    </div>
+                </article>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- ====================================================================== -->
+    <!-- SCRIPTS SECTION - External JavaScript files -->
+    <!-- ====================================================================== -->
+    <!-- <script src="script.js"></script> -->
+
+</body>
+
+</html>
