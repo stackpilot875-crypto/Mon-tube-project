@@ -1,294 +1,90 @@
-/* ============================================================================
-   MON-TUBE JAVASCRIPT - COMPLETE FUNCTIONAL FOUNDATION
-   ============================================================================ */
-
 // ============================================================================
-// 1. VIDEO DATA STRUCTURE
+// MON-TUBE - Clean JavaScript
 // ============================================================================
 
+// VIDEO DATA
 const VIDEOS = [
-    {
-        id: 1,
-        title: 'Amazing Discoveries in Modern Technology',
-        channel: 'Tech Explore Channel',
-        views: '245K',
-        date: '2 days ago',
-        duration: '12:45',
-        category: 'Technology',
-        youtubeId: 'y8OnoxKSXOU'
-    },
-    {
-        id: 2,
-        title: 'Complete Guide to Morning Routine',
-        channel: 'Daily Wellness Tips',
-        views: '1.2M',
-        date: '1 week ago',
-        duration: '8:30',
-        category: 'Education',
-        youtubeId: 'dQw4w9WgXcQ'
-    },
-    {
-        id: 3,
-        title: 'Gaming Tournament Highlights 2024',
-        channel: 'Pro Gaming Arena',
-        views: '892K',
-        date: '3 days ago',
-        duration: '15:12',
-        category: 'Gaming',
-        youtubeId: 'ZZ5LpwO-An4'
-    },
-    {
-        id: 4,
-        title: 'Cooking the Perfect Pasta from Scratch',
-        channel: 'Culinary Masterclass',
-        views: '567K',
-        date: '5 days ago',
-        duration: '22:05',
-        category: 'Cooking',
-        youtubeId: 'OIvHMR3G_rE'
-    },
-    {
-        id: 5,
-        title: 'Travel Vlog: Exploring Hidden Gems in Europe',
-        channel: 'World Wanderer',
-        views: '2.3M',
-        date: '1 day ago',
-        duration: '19:33',
-        category: 'Travel',
-        youtubeId: 'W0LHQG18plc'
-    },
-    {
-        id: 6,
-        title: 'Web Development Tips for Beginners',
-        channel: 'Code Academy',
-        views: '445K',
-        date: '4 days ago',
-        duration: '11:20',
-        category: 'Technology',
-        youtubeId: 'qz0aGYrrlhU'
-    },
-    {
-        id: 7,
-        title: 'Fitness Challenge: 30 Days Transformation',
-        channel: 'Fitness Revolution',
-        views: '1.8M',
-        date: '2 weeks ago',
-        duration: '30:15',
-        category: 'Sports',
-        youtubeId: 'nUUz5hsP8nc'
-    },
-    {
-        id: 8,
-        title: 'Music Production Studio Tour and Equipment Guide',
-        channel: 'Sound Studio Secrets',
-        views: '634K',
-        date: '6 days ago',
-        duration: '13:47',
-        category: 'Music',
-        youtubeId: 'AhWHyeXHN24'
-    },
-    {
-        id: 9,
-        title: 'Documentary: The History of Animation',
-        channel: 'Creative Minds Studio',
-        views: '756K',
-        date: '10 days ago',
-        duration: '25:58',
-        category: 'Education',
-        youtubeId: '_eSS-aVy74c'
-    },
-    {
-        id: 10,
-        title: 'Photography Masterclass: Lighting and Composition',
-        channel: 'Visual Arts Academy',
-        views: '328K',
-        date: '3 weeks ago',
-        duration: '16:42',
-        category: 'Education',
-        youtubeId: '4Ky_5J78GF4'
-    },
-    {
-        id: 11,
-        title: 'DIY Home Improvement Projects on a Budget',
-        channel: 'Home & Design',
-        views: '912K',
-        date: '8 days ago',
-        duration: '9:55',
-        category: 'Cooking',
-        youtubeId: '6HjLe-1wkPk'
-    },
-    {
-        id: 12,
-        title: 'Space Exploration: Latest NASA Missions Explained',
-        channel: 'Science Explorer',
-        views: '1.5M',
-        date: '12 days ago',
-        duration: '21:18',
-        category: 'Technology',
-        youtubeId: 'kKKM8Y-u7ds'
-    }
+    { id: 1, title: 'Amazing Discoveries in Modern Technology', channel: 'Tech Explore Channel', views: '245K', date: '2 days ago', duration: '12:45', category: 'Technology', youtubeId: 'y8OnoxKSXOU' },
+    { id: 2, title: 'Complete Guide to Morning Routine', channel: 'Daily Wellness Tips', views: '1.2M', date: '1 week ago', duration: '8:30', category: 'Education', youtubeId: 'dQw4w9WgXcQ' },
+    { id: 3, title: 'Gaming Tournament Highlights 2024', channel: 'Pro Gaming Arena', views: '892K', date: '3 days ago', duration: '15:12', category: 'Gaming', youtubeId: 'ZZ5LpwO-An4' },
+    { id: 4, title: 'Cooking the Perfect Pasta from Scratch', channel: 'Culinary Masterclass', views: '567K', date: '5 days ago', duration: '22:05', category: 'Cooking', youtubeId: 'OIvHMR3G_rE' },
+    { id: 5, title: 'Travel Vlog: Exploring Hidden Gems in Europe', channel: 'World Wanderer', views: '2.3M', date: '1 day ago', duration: '19:33', category: 'Travel', youtubeId: 'W0LHQG18plc' },
+    { id: 6, title: 'Web Development Tips for Beginners', channel: 'Code Academy', views: '445K', date: '4 days ago', duration: '11:20', category: 'Technology', youtubeId: 'qz0aGYrrlhU' },
+    { id: 7, title: 'Fitness Challenge: 30 Days Transformation', channel: 'Fitness Revolution', views: '1.8M', date: '2 weeks ago', duration: '30:15', category: 'Sports', youtubeId: 'nUUz5hsP8nc' },
+    { id: 8, title: 'Music Production Studio Tour and Equipment Guide', channel: 'Sound Studio Secrets', views: '634K', date: '6 days ago', duration: '13:47', category: 'Music', youtubeId: 'AhWHyeXHN24' },
+    { id: 9, title: 'Documentary: The History of Animation', channel: 'Creative Minds Studio', views: '756K', date: '10 days ago', duration: '25:58', category: 'Education', youtubeId: '_eSS-aVy74c' },
+    { id: 10, title: 'Photography Masterclass: Lighting and Composition', channel: 'Visual Arts Academy', views: '328K', date: '3 weeks ago', duration: '16:42', category: 'Education', youtubeId: '4Ky_5J78GF4' },
+    { id: 11, title: 'DIY Home Improvement Projects on a Budget', channel: 'Home & Design', views: '912K', date: '8 days ago', duration: '9:55', category: 'Cooking', youtubeId: '6HjLe-1wkPk' },
+    { id: 12, title: 'Space Exploration: Latest NASA Missions Explained', channel: 'Science Explorer', views: '1.5M', date: '12 days ago', duration: '21:18', category: 'Technology', youtubeId: 'kKKM8Y-u7ds' }
 ];
 
-// ============================================================================
-// 2. STATE MANAGEMENT
-// ============================================================================
-
-const APP_STATE = {
+// APPLICATION STATE
+const state = {
     currentPage: 'home',
     currentCategory: 'All',
     searchTerm: '',
-    currentVideoId: null,
-    currentSection: 'home'
+    currentVideoId: null
 };
 
-// ============================================================================
-// 3. LOCALSTORAGE HELPERS
-// ============================================================================
-
-const StorageManager = {
-    // History
-    getHistory() {
-        const history = localStorage.getItem('mon-tube-history');
-        return history ? JSON.parse(history) : [];
+// LOCALSTORAGE MANAGEMENT
+const storage = {
+    getHistory: () => JSON.parse(localStorage.getItem('history') || '[]'),
+    addHistory: (id) => {
+        const history = storage.getHistory();
+        history.unshift(id);
+        history.splice(50);
+        localStorage.setItem('history', JSON.stringify([...new Set(history)]));
     },
     
-    addToHistory(videoId) {
-        const history = this.getHistory();
-        // Remove if already exists to avoid duplicates
-        const filtered = history.filter(id => id !== videoId);
-        // Add to beginning
-        filtered.unshift(videoId);
-        // Keep only last 50
-        filtered.splice(50);
-        localStorage.setItem('mon-tube-history', JSON.stringify(filtered));
-    },
-
-    // Watch Later
-    getWatchLater() {
-        const watchLater = localStorage.getItem('mon-tube-watch-later');
-        return watchLater ? JSON.parse(watchLater) : [];
+    getWatchLater: () => JSON.parse(localStorage.getItem('watchLater') || '[]'),
+    toggleWatchLater: (id) => {
+        const items = storage.getWatchLater();
+        const index = items.indexOf(id);
+        if (index > -1) items.splice(index, 1);
+        else items.push(id);
+        localStorage.setItem('watchLater', JSON.stringify(items));
+        return index === -1;
     },
     
-    addToWatchLater(videoId) {
-        const watchLater = this.getWatchLater();
-        if (!watchLater.includes(videoId)) {
-            watchLater.push(videoId);
-            localStorage.setItem('mon-tube-watch-later', JSON.stringify(watchLater));
-        }
+    getLiked: () => JSON.parse(localStorage.getItem('liked') || '[]'),
+    toggleLiked: (id) => {
+        const items = storage.getLiked();
+        const index = items.indexOf(id);
+        if (index > -1) items.splice(index, 1);
+        else items.push(id);
+        localStorage.setItem('liked', JSON.stringify(items));
+        return index === -1;
     },
     
-    removeFromWatchLater(videoId) {
-        const watchLater = this.getWatchLater();
-        const filtered = watchLater.filter(id => id !== videoId);
-        localStorage.setItem('mon-tube-watch-later', JSON.stringify(filtered));
-    },
-    
-    isInWatchLater(videoId) {
-        return this.getWatchLater().includes(videoId);
-    },
-
-    // Liked Videos
-    getLikedVideos() {
-        const liked = localStorage.getItem('mon-tube-liked');
-        return liked ? JSON.parse(liked) : [];
-    },
-    
-    toggleLike(videoId) {
-        const liked = this.getLikedVideos();
-        if (liked.includes(videoId)) {
-            const filtered = liked.filter(id => id !== videoId);
-            localStorage.setItem('mon-tube-liked', JSON.stringify(filtered));
-            return false;
-        } else {
-            liked.push(videoId);
-            localStorage.setItem('mon-tube-liked', JSON.stringify(liked));
-            return true;
-        }
-    },
-    
-    isLiked(videoId) {
-        return this.getLikedVideos().includes(videoId);
-    },
-
-    // Subscriptions
-    getSubscriptions() {
-        const subscriptions = localStorage.getItem('mon-tube-subscriptions');
-        return subscriptions ? JSON.parse(subscriptions) : [];
-    },
-    
-    toggleSubscription(channelName) {
-        const subscriptions = this.getSubscriptions();
-        if (subscriptions.includes(channelName)) {
-            const filtered = subscriptions.filter(name => name !== channelName);
-            localStorage.setItem('mon-tube-subscriptions', JSON.stringify(filtered));
-            return false;
-        } else {
-            subscriptions.push(channelName);
-            localStorage.setItem('mon-tube-subscriptions', JSON.stringify(subscriptions));
-            return true;
-        }
-    },
-    
-    isSubscribed(channelName) {
-        return this.getSubscriptions().includes(channelName);
+    getSubscriptions: () => JSON.parse(localStorage.getItem('subscriptions') || '[]'),
+    toggleSubscription: (channel) => {
+        const items = storage.getSubscriptions();
+        const index = items.indexOf(channel);
+        if (index > -1) items.splice(index, 1);
+        else items.push(channel);
+        localStorage.setItem('subscriptions', JSON.stringify(items));
+        return index === -1;
     }
 };
 
-// ============================================================================
-// 4. VIDEO RENDERING
-// ============================================================================
-
-function createVideoCard(video) {
-    const card = document.createElement('article');
-    card.className = 'video-card';
-    const thumbnailUrl = `https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`;
-    
-    card.innerHTML = `
-        <div class="video-thumbnail">
-            <img src="${thumbnailUrl}" alt="${video.title}">
-            <span class="video-duration">${video.duration}</span>
-        </div>
-        <div class="video-info">
-            <div class="video-avatar">
-                <img src="https://via.placeholder.com/40x40?text=${video.channel.charAt(0)}" alt="${video.channel}">
-            </div>
-            <div class="video-details">
-                <h3 class="video-title">${video.title}</h3>
-                <p class="video-channel">${video.channel}</p>
-                <p class="video-meta">${video.views} views • ${video.date}</p>
-            </div>
-        </div>
-    `;
-    
-    card.addEventListener('click', () => openVideo(video.id));
-    return card;
+// UTILITY FUNCTIONS
+function getVideo(id) {
+    return VIDEOS.find(v => v.id === id);
 }
 
-function renderVideos(videos, containerId) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-    
-    container.innerHTML = '';
-    videos.forEach(video => {
-        container.appendChild(createVideoCard(video));
-    });
+function getThumbnail(youtubeId) {
+    return `https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg`;
 }
-
-// ============================================================================
-// 5. FILTERING & SEARCH LOGIC
-// ============================================================================
 
 function getFilteredVideos() {
     let filtered = VIDEOS;
     
-    // Filter by category
-    if (APP_STATE.currentCategory !== 'All') {
-        filtered = filtered.filter(v => v.category === APP_STATE.currentCategory);
+    if (state.currentCategory !== 'All') {
+        filtered = filtered.filter(v => v.category === state.currentCategory);
     }
     
-    // Filter by search term
-    if (APP_STATE.searchTerm.trim() !== '') {
-        const term = APP_STATE.searchTerm.toLowerCase().trim();
+    if (state.searchTerm.trim()) {
+        const term = state.searchTerm.toLowerCase().trim();
         filtered = filtered.filter(v => 
             v.title.toLowerCase().includes(term) || 
             v.channel.toLowerCase().includes(term)
@@ -298,506 +94,355 @@ function getFilteredVideos() {
     return filtered;
 }
 
-function updateVideoDisplay() {
+// VIDEO RENDERING
+function createVideoCard(video) {
+    const div = document.createElement('div');
+    div.className = 'video-card';
+    div.innerHTML = `
+        <div class="video-thumbnail">
+            <img src="${getThumbnail(video.youtubeId)}" alt="${video.title}">
+            <span class="video-duration">${video.duration}</span>
+        </div>
+        <div class="video-info">
+            <img src="https://via.placeholder.com/40x40" alt="" class="video-avatar">
+            <div class="video-details">
+                <p class="video-title">${video.title}</p>
+                <p class="video-channel">${video.channel}</p>
+                <p class="video-meta">${video.views} • ${video.date}</p>
+            </div>
+        </div>
+    `;
+    div.addEventListener('click', () => openVideo(video.id));
+    return div;
+}
+
+function renderVideos(videos, containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    container.innerHTML = '';
+    videos.forEach(v => container.appendChild(createVideoCard(v)));
+}
+
+function updateHome() {
     const filtered = getFilteredVideos();
     renderVideos(filtered, 'video-grid');
-    
-    // Show/hide empty state
-    const emptyState = document.getElementById('empty-state-home');
-    emptyState.style.display = filtered.length === 0 ? 'block' : 'none';
+    const empty = document.getElementById('empty-state-home');
+    if (empty) empty.style.display = filtered.length ? 'none' : 'block';
 }
 
-function updateExploreDisplay() {
+function updateExplore() {
     const filtered = getFilteredVideos();
-    renderVideos(filtered, 'explore-video-grid');
-    
-    // Show/hide empty state
-    const emptyState = document.getElementById('empty-state-explore');
-    emptyState.style.display = filtered.length === 0 ? 'block' : 'none';
+    renderVideos(filtered, 'explore-grid');
+    const empty = document.getElementById('empty-state-explore');
+    if (empty) empty.style.display = filtered.length ? 'none' : 'block';
 }
 
-// ============================================================================
-// 6. CATEGORY FILTERING
-// ============================================================================
-
-function initializeCategoryFilters() {
-    const categoryContainers = [
-        document.getElementById('category-filters'),
-        document.getElementById('explore-category-filters')
-    ];
-    
-    categoryContainers.forEach(container => {
-        if (!container) return;
-        
-        const buttons = container.querySelectorAll('.filter-btn');
-        buttons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Remove active class from all buttons in this container
-                buttons.forEach(btn => btn.classList.remove('active'));
-                
-                // Add active class to clicked button
-                this.classList.add('active');
-                
-                // Update state
-                APP_STATE.currentCategory = this.getAttribute('data-category');
-                
-                // Update display based on current page
-                if (APP_STATE.currentPage === 'home') {
-                    updateVideoDisplay();
-                } else if (APP_STATE.currentPage === 'explore') {
-                    updateExploreDisplay();
-                }
-            });
-        });
-    });
-}
-
-// ============================================================================
-// 7. SEARCH FUNCTIONALITY
-// ============================================================================
-
-function initializeSearch() {
-    const searchForm = document.getElementById('search-form');
-    const searchInput = document.getElementById('search-input');
-    
-    if (!searchForm || !searchInput) return;
-    
-    function performSearch() {
-        APP_STATE.searchTerm = searchInput.value;
-        
-        // Keep the current category selection - don't reset it
-        // This allows searching within a selected category
-        updateVideoDisplay();
+// NAVIGATION
+function goToPage(pageName) {
+    if (state.currentPage === 'player') {
+        const iframe = document.getElementById('video-player');
+        if (iframe) iframe.src = '';
     }
     
-    searchForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        performSearch();
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const page = document.getElementById(`page-${pageName}`);
+    if (page) page.classList.add('active');
+    
+    document.querySelectorAll('[data-page]').forEach(link => {
+        link.classList.toggle('active', link.getAttribute('data-page') === pageName);
     });
     
-    searchInput.addEventListener('keyup', function(e) {
-        if (e.key === 'Enter') {
-            performSearch();
-        }
-    });
+    state.currentPage = pageName;
+    
+    closeSidebar();
+    
+    if (pageName === 'home') updateHome();
+    else if (pageName === 'explore') updateExplore();
+    else if (pageName === 'history') renderHistory();
+    else if (pageName === 'watch-later') renderWatchLater();
+    else if (pageName === 'liked-videos') renderLikedVideos();
+    else if (pageName === 'subscriptions') renderSubscriptions();
 }
 
-// ============================================================================
-// 8. VIDEO PLAYER
-// ============================================================================
-
-function getVideoById(videoId) {
-    return VIDEOS.find(v => v.id === videoId);
-}
-
-function openVideo(videoId) {
-    const video = getVideoById(videoId);
+function openVideo(id) {
+    const video = getVideo(id);
     if (!video) return;
     
-    // Add to history
-    StorageManager.addToHistory(videoId);
+    storage.addHistory(id);
+    state.currentVideoId = id;
     
-    // Update state
-    APP_STATE.currentVideoId = videoId;
+    const player = document.getElementById('video-player');
+    if (player) player.src = `https://www.youtube.com/embed/${video.youtubeId}?autoplay=1`;
     
-    // Get player element and update
-    const playerElement = document.getElementById('youtube-player');
-    if (playerElement) {
-        playerElement.src = `https://www.youtube.com/embed/${video.youtubeId}?autoplay=1`;
-    }
+    const title = document.getElementById('player-title');
+    const meta = document.getElementById('player-meta');
+    const channel = document.getElementById('player-channel');
+    const avatar = document.getElementById('channel-avatar');
     
-    // Update title and info
-    const titleElement = document.getElementById('player-title');
-    const channelElement = document.getElementById('player-channel');
-    const viewsElement = document.getElementById('player-views');
-    const dateElement = document.getElementById('player-date');
-    const avatarElement = document.getElementById('player-avatar');
+    if (title) title.textContent = video.title;
+    if (meta) meta.textContent = `${video.views} views • ${video.date}`;
+    if (channel) channel.textContent = video.channel;
+    if (avatar) avatar.src = getThumbnail(video.youtubeId);
     
-    if (titleElement) titleElement.textContent = video.title;
-    if (channelElement) channelElement.textContent = video.channel;
-    if (viewsElement) viewsElement.textContent = `${video.views} views`;
-    if (dateElement) dateElement.textContent = video.date;
-    if (avatarElement) avatarElement.src = `https://via.placeholder.com/48x48?text=${video.channel.charAt(0)}`;
-    
-    // Update buttons
     updatePlayerButtons();
-    
-    // Switch to player page
     goToPage('player');
 }
 
 function updatePlayerButtons() {
-    const videoId = APP_STATE.currentVideoId;
-    const likeButton = document.getElementById('like-button');
-    const watchLaterButton = document.getElementById('watch-later-button');
+    const id = state.currentVideoId;
+    const likeBtn = document.getElementById('like-btn');
+    const watchBtn = document.getElementById('watch-later-btn');
     
-    // Update like button
-    if (StorageManager.isLiked(videoId)) {
-        likeButton.classList.add('active');
-    } else {
-        likeButton.classList.remove('active');
+    if (likeBtn) {
+        likeBtn.classList.toggle('active', storage.getLiked().includes(id));
     }
-    
-    // Update watch later button
-    if (StorageManager.isInWatchLater(videoId)) {
-        watchLaterButton.classList.add('active');
-    } else {
-        watchLaterButton.classList.remove('active');
+    if (watchBtn) {
+        watchBtn.classList.toggle('active', storage.getWatchLater().includes(id));
     }
 }
 
 function refreshCurrentPage() {
-    // Refresh the display of the current page
-    if (APP_STATE.currentPage === 'history') {
-        renderHistory();
-    } else if (APP_STATE.currentPage === 'watch-later') {
-        renderWatchLater();
-    } else if (APP_STATE.currentPage === 'liked-videos') {
-        renderLikedVideos();
-    } else if (APP_STATE.currentPage === 'home') {
-        updateVideoDisplay();
-    } else if (APP_STATE.currentPage === 'explore') {
-        updateExploreDisplay();
-    }
+    if (state.currentPage === 'liked-videos') renderLikedVideos();
+    else if (state.currentPage === 'watch-later') renderWatchLater();
+    else if (state.currentPage === 'history') renderHistory();
 }
 
-function initializePlayerButtons() {
-    const likeButton = document.getElementById('like-button');
-    const watchLaterButton = document.getElementById('watch-later-button');
-    
-    likeButton.addEventListener('click', function() {
-        const videoId = APP_STATE.currentVideoId;
-        const isLiked = StorageManager.toggleLike(videoId);
-        
-        if (isLiked) {
-            this.classList.add('active');
-        } else {
-            this.classList.remove('active');
-        }
-        
-        // Refresh current page in case it's the liked videos page
-        refreshCurrentPage();
-    });
-    
-    watchLaterButton.addEventListener('click', function() {
-        const videoId = APP_STATE.currentVideoId;
-        if (StorageManager.isInWatchLater(videoId)) {
-            StorageManager.removeFromWatchLater(videoId);
-            this.classList.remove('active');
-        } else {
-            StorageManager.addToWatchLater(videoId);
-            this.classList.add('active');
-        }
-        
-        // Refresh current page in case it's the watch later page
-        refreshCurrentPage();
-    });
-}
-
-// ============================================================================
-// 9. HISTORY PAGE
-// ============================================================================
-
+// HISTORY, WATCH LATER, LIKED
 function renderHistory() {
-    const historyIds = StorageManager.getHistory();
-    const historyVideos = historyIds
-        .map(id => getVideoById(id))
-        .filter(v => v !== undefined);
-    
-    renderVideos(historyVideos, 'history-video-grid');
-    
-    const emptyState = document.getElementById('empty-state-history');
-    emptyState.style.display = historyVideos.length === 0 ? 'block' : 'none';
+    const videos = storage.getHistory().map(getVideo).filter(Boolean);
+    renderVideos(videos, 'history-grid');
+    const empty = document.getElementById('empty-state-history');
+    if (empty) empty.style.display = videos.length ? 'none' : 'block';
 }
-
-// ============================================================================
-// 10. WATCH LATER PAGE
-// ============================================================================
 
 function renderWatchLater() {
-    const watchLaterIds = StorageManager.getWatchLater();
-    const watchLaterVideos = watchLaterIds
-        .map(id => getVideoById(id))
-        .filter(v => v !== undefined);
-    
-    renderVideos(watchLaterVideos, 'watch-later-video-grid');
-    
-    const emptyState = document.getElementById('empty-state-watch-later');
-    emptyState.style.display = watchLaterVideos.length === 0 ? 'block' : 'none';
+    const videos = storage.getWatchLater().map(getVideo).filter(Boolean);
+    renderVideos(videos, 'watch-later-grid');
+    const empty = document.getElementById('empty-state-watch-later');
+    if (empty) empty.style.display = videos.length ? 'none' : 'block';
 }
-
-// ============================================================================
-// 11. LIKED VIDEOS PAGE
-// ============================================================================
 
 function renderLikedVideos() {
-    const likedIds = StorageManager.getLikedVideos();
-    const likedVideos = likedIds
-        .map(id => getVideoById(id))
-        .filter(v => v !== undefined);
-    
-    renderVideos(likedVideos, 'liked-videos-grid');
-    
-    const emptyState = document.getElementById('empty-state-liked-videos');
-    emptyState.style.display = likedVideos.length === 0 ? 'block' : 'none';
+    const videos = storage.getLiked().map(getVideo).filter(Boolean);
+    renderVideos(videos, 'liked-grid');
+    const empty = document.getElementById('empty-state-liked');
+    if (empty) empty.style.display = videos.length ? 'none' : 'block';
 }
 
-// ============================================================================
-// 12. SUBSCRIPTIONS PAGE
-// ============================================================================
-
+// SUBSCRIPTIONS
 function renderSubscriptions() {
-    const container = document.getElementById('subscriptions-container');
-    if (!container) return;
+    const grid = document.getElementById('subscriptions-grid');
+    const empty = document.getElementById('empty-state-subscriptions');
+    if (!grid) return;
     
-    // Get unique channels
     const channels = [...new Set(VIDEOS.map(v => v.channel))];
-    const subscriptions = StorageManager.getSubscriptions();
+    const subscriptions = storage.getSubscriptions();
     
-    container.innerHTML = '';
-    
-    // Show subscribed channels
-    channels.forEach(channelName => {
-        const isSubscribed = StorageManager.isSubscribed(channelName);
-        const card = document.createElement('div');
-        card.className = 'subscription-card';
-        card.innerHTML = `
-            <img src="https://via.placeholder.com/80x80?text=${channelName.charAt(0)}" alt="${channelName}" class="subscription-avatar">
-            <p class="subscription-name">${channelName}</p>
-            <p class="subscription-subscribers">Sample channel</p>
-            <button class="subscription-toggle" data-channel="${channelName}">
+    grid.innerHTML = '';
+    channels.forEach(name => {
+        const isSubscribed = subscriptions.includes(name);
+        const div = document.createElement('div');
+        div.className = 'subscription-card';
+        div.innerHTML = `
+            <img src="https://via.placeholder.com/80x80" alt="${name}" class="avatar">
+            <p class="channel-name">${name}</p>
+            <p class="channel-meta">Sample channel</p>
+            <button class="subscription-toggle ${isSubscribed ? 'active' : ''}" data-channel="${name}">
                 ${isSubscribed ? 'Subscribed' : 'Subscribe'}
             </button>
         `;
-        
-        // Add event listener to subscribe button
-        const button = card.querySelector('.subscription-toggle');
-        button.addEventListener('click', function(e) {
+        const btn = div.querySelector('.subscription-toggle');
+        btn.addEventListener('click', (e) => {
             e.stopPropagation();
-            const channelName = this.getAttribute('data-channel');
-            const isNowSubscribed = StorageManager.toggleSubscription(channelName);
-            this.textContent = isNowSubscribed ? 'Subscribed' : 'Subscribe';
-            this.classList.toggle('active');
+            const isNow = storage.toggleSubscription(name);
+            btn.textContent = isNow ? 'Subscribed' : 'Subscribe';
+            btn.classList.toggle('active');
         });
-        
-        if (isSubscribed) {
-            button.classList.add('active');
-        }
-        
-        container.appendChild(card);
+        grid.appendChild(div);
     });
     
-    const emptyState = document.getElementById('empty-state-subscriptions');
-    emptyState.style.display = subscriptions.length === 0 ? 'block' : 'none';
+    if (empty) empty.style.display = subscriptions.length ? 'none' : 'block';
 }
 
-// ============================================================================
-// 13. PAGE NAVIGATION
-// ============================================================================
-
-function goToPage(pageName) {
-    // Stop YouTube player if leaving player page
-    if (APP_STATE.currentPage === 'player' && pageName !== 'player') {
-        const playerElement = document.getElementById('youtube-player');
-        if (playerElement) {
-            playerElement.src = '';
-        }
-    }
-    
-    // Hide all pages
-    document.querySelectorAll('.page-section').forEach(section => {
-        section.classList.remove('active');
-    });
-    
-    // Show requested page
-    const pageElement = document.getElementById(`page-${pageName}`);
-    if (pageElement) {
-        pageElement.classList.add('active');
-    }
-    
-    // Update state
-    APP_STATE.currentPage = pageName;
-    
-    // Update sidebar active link
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('active');
-    });
-    
-    const activeLink = document.querySelector(`[data-page="${pageName}"]`);
-    if (activeLink) {
-        activeLink.classList.add('active');
-    }
-    
-    // Close mobile menu
-    const sidebar = document.getElementById('sidebar');
-    if (sidebar.classList.contains('open')) {
-        sidebar.classList.remove('open');
-    }
-    
-    // Render page-specific content
-    if (pageName === 'history') {
-        renderHistory();
-    } else if (pageName === 'watch-later') {
-        renderWatchLater();
-    } else if (pageName === 'liked-videos') {
-        renderLikedVideos();
-    } else if (pageName === 'subscriptions') {
-        renderSubscriptions();
-    } else if (pageName === 'explore') {
-        // Reset to All category for explore
-        APP_STATE.currentCategory = 'All';
-        const exploreButtons = document.querySelectorAll('#explore-category-filters .filter-btn');
-        exploreButtons.forEach(btn => {
-            if (btn.getAttribute('data-category') === 'All') {
-                btn.classList.add('active');
-            } else {
+// CATEGORY FILTERS
+function initCategoryFilters() {
+    const filterContainer = (id, pageUpdate) => {
+        const container = document.getElementById(id);
+        if (!container) return;
+        container.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('filter-btn')) return;
+            
+            container.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.remove('active');
-            }
+            });
+            
+            e.target.classList.add('active');
+            state.currentCategory = e.target.getAttribute('data-category');
+            pageUpdate();
         });
-        updateExploreDisplay();
-    } else if (pageName === 'home') {
-        updateVideoDisplay();
-    }
+    };
+    
+    filterContainer('category-filters', updateHome);
+    filterContainer('explore-filters', updateExplore);
 }
 
-function initializeNavigation() {
-    // Sidebar links
-    document.querySelectorAll('[data-page]').forEach(link => {
-        link.addEventListener('click', function(e) {
+// SEARCH
+function initSearch() {
+    const form = document.getElementById('search-form');
+    const input = document.getElementById('search-input');
+    
+    if (!form || !input) return;
+    
+    const performSearch = () => {
+        state.searchTerm = input.value;
+        updateHome();
+    };
+    
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        performSearch();
+    });
+    
+    input.addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') performSearch();
+    });
+}
+
+// PLAYER BUTTONS
+function initPlayerButtons() {
+    const likeBtn = document.getElementById('like-btn');
+    const watchBtn = document.getElementById('watch-later-btn');
+    
+    if (likeBtn) {
+        likeBtn.addEventListener('click', () => {
+            storage.toggleLiked(state.currentVideoId);
+            likeBtn.classList.toggle('active');
+            refreshCurrentPage();
+        });
+    }
+    
+    if (watchBtn) {
+        watchBtn.addEventListener('click', () => {
+            storage.toggleWatchLater(state.currentVideoId);
+            watchBtn.classList.toggle('active');
+            refreshCurrentPage();
+        });
+    }
+    
+    const backBtn = document.getElementById('back-btn');
+    if (backBtn) {
+        backBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            const page = this.getAttribute('data-page');
-            goToPage(page);
+            goToPage('home');
         });
-    });
-    
-    // Logo link
-    document.getElementById('logo-link').addEventListener('click', function(e) {
-        e.preventDefault();
-        goToPage('home');
-    });
-    
-    // Back button
-    document.getElementById('back-button').addEventListener('click', function(e) {
-        e.preventDefault();
-        goToPage('home');
-    });
+    }
 }
 
-// ============================================================================
-// 14. HEADER PANELS
-// ============================================================================
-
-function initializeHeaderPanels() {
-    // Upload button
-    const uploadBtn = document.getElementById('upload-btn');
-    const uploadPanel = document.getElementById('upload-panel');
-    const uploadClose = document.getElementById('upload-close');
-    
-    if (uploadBtn && uploadPanel) {
-        uploadBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            uploadPanel.classList.toggle('active');
-            // Close notifications and profile panels
-            document.getElementById('notifications-panel').classList.remove('active');
-            document.getElementById('profile-panel').classList.remove('active');
+// NAVIGATION LINKS
+function initNav() {
+    document.querySelectorAll('[data-page]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            goToPage(link.getAttribute('data-page'));
         });
-        
-        uploadClose.addEventListener('click', function() {
-            uploadPanel.classList.remove('active');
-        });
-        
-        uploadPanel.addEventListener('click', function(e) {
-            if (e.target === uploadPanel) {
-                uploadPanel.classList.remove('active');
-            }
-        });
-    }
-    
-    // Notifications button
-    const notificationsBtn = document.getElementById('notifications-btn');
-    const notificationsPanel = document.getElementById('notifications-panel');
-    const notificationsClose = document.getElementById('notifications-close');
-    
-    if (notificationsBtn && notificationsPanel) {
-        notificationsBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            notificationsPanel.classList.toggle('active');
-            // Close upload and profile panels
-            document.getElementById('upload-panel').classList.remove('active');
-            document.getElementById('profile-panel').classList.remove('active');
-        });
-        
-        notificationsClose.addEventListener('click', function() {
-            notificationsPanel.classList.remove('active');
-        });
-    }
-    
-    // Profile button
-    const profileBtn = document.getElementById('profile-btn');
-    const profilePanel = document.getElementById('profile-panel');
-    
-    if (profileBtn && profilePanel) {
-        profileBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            profilePanel.classList.toggle('active');
-            // Close upload and notifications panels
-            document.getElementById('upload-panel').classList.remove('active');
-            document.getElementById('notifications-panel').classList.remove('active');
-        });
-    }
-    
-    // Close panels when clicking outside
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('.user-section')) {
-            document.getElementById('upload-panel').classList.remove('active');
-            document.getElementById('notifications-panel').classList.remove('active');
-            document.getElementById('profile-panel').classList.remove('active');
-        }
     });
+    
+    const homeLink = document.getElementById('home-link');
+    if (homeLink) {
+        homeLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            goToPage('home');
+        });
+    }
 }
 
-// ============================================================================
-// 15. MOBILE MENU
-// ============================================================================
+// SIDEBAR
+function closeSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar) sidebar.classList.remove('open');
+}
 
-function initializeMobileMenu() {
-    const menuToggle = document.getElementById('menu-toggle');
+function initMobileSidebar() {
+    const toggle = document.getElementById('menu-toggle');
     const sidebar = document.getElementById('sidebar');
     
-    if (!menuToggle || !sidebar) return;
+    if (!toggle || !sidebar) return;
     
-    menuToggle.addEventListener('click', function(e) {
+    toggle.addEventListener('click', (e) => {
         e.preventDefault();
         sidebar.classList.toggle('open');
     });
     
-    // Close menu when clicking outside
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', (e) => {
         if (!e.target.closest('.sidebar') && !e.target.closest('.menu-toggle')) {
-            sidebar.classList.remove('open');
+            closeSidebar();
         }
     });
 }
 
-// ============================================================================
-// 16. INITIALIZATION
-// ============================================================================
+// HEADER PANELS
+function initPanels() {
+    const setupPanel = (btnId, panelId, closeId = null) => {
+        const btn = document.getElementById(btnId);
+        const panel = document.getElementById(panelId);
+        
+        if (!btn || !panel) return;
+        
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeAllPanels();
+            panel.classList.add('active');
+        });
+        
+        if (closeId) {
+            const closeBtn = document.getElementById(closeId);
+            if (closeBtn) {
+                closeBtn.addEventListener('click', () => {
+                    panel.classList.remove('active');
+                });
+            }
+        }
+    };
+    
+    const closeAllPanels = () => {
+        document.getElementById('upload-modal')?.classList.remove('active');
+        document.getElementById('notifications-panel')?.classList.remove('active');
+        document.getElementById('profile-panel')?.classList.remove('active');
+    };
+    
+    setupPanel('upload-btn', 'upload-modal', 'upload-close');
+    setupPanel('notifications-btn', 'notifications-panel', 'notifications-close');
+    setupPanel('profile-btn', 'profile-panel');
+    
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.header-actions') && !e.target.closest('.panel') && !e.target.closest('.modal')) {
+            closeAllPanels();
+        }
+    });
+}
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Initial render
+// LIBRARY NAVIGATION
+function initLibrary() {
+    document.querySelectorAll('.library-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+            e.preventDefault();
+            goToPage(card.getAttribute('data-page'));
+        });
+    });
+}
+
+// INITIALIZATION
+document.addEventListener('DOMContentLoaded', () => {
     renderVideos(VIDEOS, 'video-grid');
-    renderVideos(VIDEOS, 'explore-video-grid');
+    renderVideos(VIDEOS, 'explore-grid');
     
-    // Initialize features
-    initializeCategoryFilters();
-    initializeSearch();
-    initializePlayerButtons();
-    initializeNavigation();
-    initializeMobileMenu();
-    initializeHeaderPanels();
+    initCategoryFilters();
+    initSearch();
+    initPlayerButtons();
+    initNav();
+    initMobileSidebar();
+    initPanels();
+    initLibrary();
     
-    // Set initial home page
     goToPage('home');
 });

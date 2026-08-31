@@ -3,339 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon-Tube | Video Sharing Platform</title>
+    <title>Mon-Tube | Video Sharing</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header Section -->
-    <header class="header">
-        <div class="header-container">
-            <!-- Logo/Brand -->
-            <div class="logo-section">
-                <a href="#" class="logo" id="logo-link">
-                    <span class="logo-text">Mon-Tube</span>
-                </a>
-                <button class="menu-toggle" id="menu-toggle" aria-label="Toggle sidebar">
-                    ☰
-                </button>
-            </div>
 
-            <!-- Search Bar -->
-            <div class="search-section">
-                <form class="search-form" id="search-form" action="#" method="GET">
-                    <input 
-                        type="text" 
-                        class="search-input" 
-                        id="search-input"
-                        placeholder="Search videos, channels, playlists..."
-                        aria-label="Search"
-                    >
-                    <button type="submit" class="search-button" aria-label="Search">
-                        🔍
-                    </button>
-                </form>
-            </div>
-
-            <!-- User/Profile Area -->
-            <div class="user-section">
-                <button class="icon-button" id="upload-btn" aria-label="Upload video">
-                    ⬆️
-                </button>
-                <button class="icon-button" id="notifications-btn" aria-label="Notifications">
-                    🔔
-                </button>
-                <button class="profile-button" id="profile-btn" aria-label="Profile menu">
-                    👤
-                </button>
-            </div>
+<!-- HEADER -->
+<header class="header">
+    <div class="header-content">
+        <a href="#" class="logo" id="home-link">Mon-Tube</a>
+        
+        <form class="search-bar" id="search-form">
+            <input type="text" id="search-input" placeholder="Search..." class="search-input">
+            <button type="submit" class="search-btn">🔍</button>
+        </form>
+        
+        <div class="header-actions">
+            <button class="header-btn" id="upload-btn" title="Upload">⬆️</button>
+            <button class="header-btn" id="notifications-btn" title="Notifications">🔔</button>
+            <button class="header-btn" id="profile-btn" title="Profile">👤</button>
         </div>
 
-        <!-- Upload Panel -->
-        <div class="modal-overlay" id="upload-panel">
-            <div class="modal-content">
-                <button class="modal-close" id="upload-close">&times;</button>
-                <h2>Upload Video</h2>
-                <p>This feature is coming soon. In a real application, you would be able to upload your own videos here.</p>
-                <p style="font-size: 12px; color: #aaa; margin-top: 16px;">For now, Mon-Tube displays videos from YouTube.</p>
-            </div>
-        </div>
-
-        <!-- Notifications Panel -->
-        <div class="notifications-panel" id="notifications-panel">
-            <div class="notifications-header">
-                <h3>Notifications</h3>
-                <button class="notifications-close" id="notifications-close">&times;</button>
-            </div>
-            <div class="notifications-content">
-                <p style="padding: 16px; color: #aaa; text-align: center;">No new notifications</p>
-            </div>
-        </div>
-
-        <!-- Profile Panel -->
-        <div class="profile-panel" id="profile-panel">
-            <div class="profile-header">
-                <img src="https://via.placeholder.com/40x40?text=U" alt="Profile" class="profile-avatar">
-                <div>
-                    <p class="profile-username">Guest User</p>
-                    <p class="profile-email">Not logged in</p>
-                </div>
-            </div>
-            <div class="profile-menu">
-                <button class="profile-menu-item">Settings</button>
-                <button class="profile-menu-item">Help & feedback</button>
-                <hr style="border: none; border-top: 1px solid #303030; margin: 8px 0;">
-                <button class="profile-menu-item">Sign in</button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Container -->
-    <div class="container">
-        <!-- Sidebar Navigation -->
-        <aside class="sidebar" id="sidebar">
-            <nav class="sidebar-nav">
-                <ul class="nav-list">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link active" data-page="home">
-                            🏠 Home
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link" data-page="explore">
-                            🔍 Explore
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link" data-page="subscriptions">
-                            📺 Subscriptions
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-
-            <hr class="sidebar-divider">
-
-            <nav class="sidebar-nav">
-                <ul class="nav-list">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link" data-page="library">
-                            📚 Library
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link" data-page="history">
-                            ⏱️ History
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link" data-page="watch-later">
-                            ⏲️ Watch Later
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link" data-page="liked-videos">
-                            👍 Liked Videos
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </aside>
-
-        <!-- Main Content Area -->
-        <main class="main-content">
-            <!-- HOME PAGE -->
-            <section id="page-home" class="page-section active">
-                <div class="content-header">
-                    <h1 class="page-title">Recommended for You</h1>
-                </div>
-
-                <section class="category-filters">
-                    <div class="filter-buttons" id="category-filters">
-                        <button class="filter-btn active" data-category="All">All</button>
-                        <button class="filter-btn" data-category="Gaming">Gaming</button>
-                        <button class="filter-btn" data-category="Music">Music</button>
-                        <button class="filter-btn" data-category="Technology">Technology</button>
-                        <button class="filter-btn" data-category="Education">Education</button>
-                        <button class="filter-btn" data-category="Sports">Sports</button>
-                        <button class="filter-btn" data-category="Travel">Travel</button>
-                        <button class="filter-btn" data-category="Cooking">Cooking</button>
-                    </div>
-                </section>
-
-                <section class="video-grid" id="video-grid">
-                    <!-- Videos rendered by JavaScript -->
-                </section>
-
-                <div class="empty-state" id="empty-state-home" style="display: none;">
-                    <p>No videos found. Try adjusting your search or filters.</p>
-                </div>
-            </section>
-
-            <!-- VIDEO PLAYER PAGE -->
-            <section id="page-player" class="page-section">
-                <div class="player-container">
-                    <button class="back-button" id="back-button">← Back</button>
-                    
-                    <div class="video-player">
-                        <iframe 
-                            id="youtube-player" 
-                            width="100%" 
-                            height="600" 
-                            src="" 
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-
-                    <div class="video-details-section">
-                        <h1 id="player-title" class="player-title">Video Title</h1>
-                        
-                        <div class="player-meta">
-                            <span id="player-views">0 views</span>
-                            <span>•</span>
-                            <span id="player-date">Unknown date</span>
-                        </div>
-
-                        <div class="player-actions">
-                            <button class="action-button" id="like-button">
-                                👍 <span>Like</span>
-                            </button>
-                            <button class="action-button" id="watch-later-button">
-                                ⏲️ <span>Watch Later</span>
-                            </button>
-                        </div>
-
-                        <div class="player-channel">
-                            <div class="channel-info">
-                                <img id="player-avatar" src="https://via.placeholder.com/48x48" alt="Channel avatar" class="channel-avatar">
-                                <div>
-                                    <p id="player-channel" class="channel-name">Channel Name</p>
-                                    <p class="channel-subscribers">Sample Channel</p>
-                                </div>
-                            </div>
-                            <button class="subscribe-button">Subscribe</button>
-                        </div>
-
-                        <div class="video-description">
-                            <p>Sample video description. This is a demo video for the Mon-Tube platform.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- EXPLORE PAGE -->
-            <section id="page-explore" class="page-section">
-                <div class="content-header">
-                    <h1 class="page-title">Explore</h1>
-                </div>
-
-                <section class="category-filters">
-                    <div class="filter-buttons" id="explore-category-filters">
-                        <button class="filter-btn active" data-category="All">All</button>
-                        <button class="filter-btn" data-category="Gaming">Gaming</button>
-                        <button class="filter-btn" data-category="Music">Music</button>
-                        <button class="filter-btn" data-category="Technology">Technology</button>
-                        <button class="filter-btn" data-category="Education">Education</button>
-                        <button class="filter-btn" data-category="Sports">Sports</button>
-                        <button class="filter-btn" data-category="Travel">Travel</button>
-                        <button class="filter-btn" data-category="Cooking">Cooking</button>
-                    </div>
-                </section>
-
-                <section class="video-grid" id="explore-video-grid">
-                    <!-- Videos rendered by JavaScript -->
-                </section>
-
-                <div class="empty-state" id="empty-state-explore" style="display: none;">
-                    <p>No videos found.</p>
-                </div>
-            </section>
-
-            <!-- SUBSCRIPTIONS PAGE -->
-            <section id="page-subscriptions" class="page-section">
-                <div class="content-header">
-                    <h1 class="page-title">Subscriptions</h1>
-                </div>
-
-                <div class="subscriptions-container" id="subscriptions-container">
-                    <!-- Subscriptions rendered by JavaScript -->
-                </div>
-
-                <div class="empty-state" id="empty-state-subscriptions" style="display: none;">
-                    <p>You haven't subscribed to any channels yet.</p>
-                </div>
-            </section>
-
-            <!-- LIBRARY PAGE -->
-            <section id="page-library" class="page-section">
-                <div class="content-header">
-                    <h1 class="page-title">Library</h1>
-                </div>
-
-                <div class="library-sections">
-                    <div class="library-section">
-                        <h2><a href="#" data-page="history">⏱️ History</a></h2>
-                        <p>View and manage your watch history.</p>
-                    </div>
-                    <div class="library-section">
-                        <h2><a href="#" data-page="watch-later">⏲️ Watch Later</a></h2>
-                        <p>Videos you've saved to watch later.</p>
-                    </div>
-                    <div class="library-section">
-                        <h2><a href="#" data-page="liked-videos">👍 Liked Videos</a></h2>
-                        <p>Videos you've liked.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- HISTORY PAGE -->
-            <section id="page-history" class="page-section">
-                <div class="content-header">
-                    <h1 class="page-title">History</h1>
-                </div>
-
-                <section class="video-grid" id="history-video-grid">
-                    <!-- Videos rendered by JavaScript -->
-                </section>
-
-                <div class="empty-state" id="empty-state-history" style="display: none;">
-                    <p>No videos in your history yet.</p>
-                </div>
-            </section>
-
-            <!-- WATCH LATER PAGE -->
-            <section id="page-watch-later" class="page-section">
-                <div class="content-header">
-                    <h1 class="page-title">Watch Later</h1>
-                </div>
-
-                <section class="video-grid" id="watch-later-video-grid">
-                    <!-- Videos rendered by JavaScript -->
-                </section>
-
-                <div class="empty-state" id="empty-state-watch-later" style="display: none;">
-                    <p>No videos saved to Watch Later yet.</p>
-                </div>
-            </section>
-
-            <!-- LIKED VIDEOS PAGE -->
-            <section id="page-liked-videos" class="page-section">
-                <div class="content-header">
-                    <h1 class="page-title">Liked Videos</h1>
-                </div>
-
-                <section class="video-grid" id="liked-videos-grid">
-                    <!-- Videos rendered by JavaScript -->
-                </section>
-
-                <div class="empty-state" id="empty-state-liked-videos" style="display: none;">
-                    <p>No liked videos yet.</p>
-                </div>
-            </section>
-        </main>
+        <button class="menu-toggle" id="menu-toggle" title="Menu">☰</button>
     </div>
+</header>
 
-    <script src="script.js"></script>
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+        <a href="#" data-page="home" class="nav-link active">🏠 Home</a>
+        <a href="#" data-page="explore" class="nav-link">🔍 Explore</a>
+        <a href="#" data-page="subscriptions" class="nav-link">📺 Subscriptions</a>
+    </nav>
+    
+    <hr class="sidebar-divider">
+    
+    <nav class="sidebar-nav">
+        <a href="#" data-page="library" class="nav-link">📚 Library</a>
+        <a href="#" data-page="history" class="nav-link">⏱️ History</a>
+        <a href="#" data-page="watch-later" class="nav-link">⏲️ Watch Later</a>
+        <a href="#" data-page="liked-videos" class="nav-link">👍 Liked</a>
+    </nav>
+</aside>
+
+<!-- MAIN CONTENT -->
+<main class="main-content">
+
+    <!-- HOME PAGE -->
+    <section id="page-home" class="page active">
+        <h1 class="page-title">Recommended for You</h1>
+        
+        <div class="category-filters" id="category-filters">
+            <button class="filter-btn active" data-category="All">All</button>
+            <button class="filter-btn" data-category="Gaming">Gaming</button>
+            <button class="filter-btn" data-category="Music">Music</button>
+            <button class="filter-btn" data-category="Technology">Technology</button>
+            <button class="filter-btn" data-category="Education">Education</button>
+            <button class="filter-btn" data-category="Sports">Sports</button>
+            <button class="filter-btn" data-category="Travel">Travel</button>
+            <button class="filter-btn" data-category="Cooking">Cooking</button>
+        </div>
+        
+        <div class="video-grid" id="video-grid"></div>
+        
+        <div class="empty-state" id="empty-state-home" style="display:none">
+            No videos found
+        </div>
+    </section>
+
+    <!-- EXPLORE PAGE -->
+    <section id="page-explore" class="page">
+        <h1 class="page-title">Explore</h1>
+        
+        <div class="category-filters" id="explore-filters">
+            <button class="filter-btn active" data-category="All">All</button>
+            <button class="filter-btn" data-category="Gaming">Gaming</button>
+            <button class="filter-btn" data-category="Music">Music</button>
+            <button class="filter-btn" data-category="Technology">Technology</button>
+            <button class="filter-btn" data-category="Education">Education</button>
+            <button class="filter-btn" data-category="Sports">Sports</button>
+            <button class="filter-btn" data-category="Travel">Travel</button>
+            <button class="filter-btn" data-category="Cooking">Cooking</button>
+        </div>
+        
+        <div class="video-grid" id="explore-grid"></div>
+        
+        <div class="empty-state" id="empty-state-explore" style="display:none">
+            No videos found
+        </div>
+    </section>
+
+    <!-- PLAYER PAGE -->
+    <section id="page-player" class="page">
+        <button class="back-btn" id="back-btn">← Back</button>
+        
+        <div class="player-frame">
+            <iframe id="video-player" width="100%" height="600" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+        
+        <div class="player-info">
+            <h1 id="player-title">Video Title</h1>
+            <p id="player-meta">0 views • Unknown date</p>
+            
+            <div class="player-actions">
+                <button class="action-btn" id="like-btn">👍 Like</button>
+                <button class="action-btn" id="watch-later-btn">⏲️ Watch Later</button>
+            </div>
+            
+            <div class="channel-info">
+                <img id="channel-avatar" src="https://via.placeholder.com/48x48" alt="Channel" class="avatar">
+                <div>
+                    <p id="player-channel" class="channel-name">Channel</p>
+                    <p class="channel-meta">Sample channel</p>
+                </div>
+                <button class="subscribe-btn">Subscribe</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SUBSCRIPTIONS PAGE -->
+    <section id="page-subscriptions" class="page">
+        <h1 class="page-title">Subscriptions</h1>
+        <div class="subscriptions-grid" id="subscriptions-grid"></div>
+        <div class="empty-state" id="empty-state-subscriptions">No subscriptions yet</div>
+    </section>
+
+    <!-- LIBRARY PAGE -->
+    <section id="page-library" class="page">
+        <h1 class="page-title">Library</h1>
+        <div class="library-grid">
+            <a href="#" data-page="history" class="library-card">⏱️ History</a>
+            <a href="#" data-page="watch-later" class="library-card">⏲️ Watch Later</a>
+            <a href="#" data-page="liked-videos" class="library-card">👍 Liked Videos</a>
+        </div>
+    </section>
+
+    <!-- HISTORY PAGE -->
+    <section id="page-history" class="page">
+        <h1 class="page-title">History</h1>
+        <div class="video-grid" id="history-grid"></div>
+        <div class="empty-state" id="empty-state-history">No watch history</div>
+    </section>
+
+    <!-- WATCH LATER PAGE -->
+    <section id="page-watch-later" class="page">
+        <h1 class="page-title">Watch Later</h1>
+        <div class="video-grid" id="watch-later-grid"></div>
+        <div class="empty-state" id="empty-state-watch-later">No videos saved</div>
+    </section>
+
+    <!-- LIKED VIDEOS PAGE -->
+    <section id="page-liked-videos" class="page">
+        <h1 class="page-title">Liked Videos</h1>
+        <div class="video-grid" id="liked-grid"></div>
+        <div class="empty-state" id="empty-state-liked">No liked videos yet</div>
+    </section>
+
+</main>
+
+<!-- HEADER PANELS -->
+<div class="modal" id="upload-modal">
+    <div class="modal-box">
+        <button class="modal-close" id="upload-close">&times;</button>
+        <h2>Upload Video</h2>
+        <p>Upload feature coming soon. Mon-Tube currently displays videos from YouTube.</p>
+    </div>
+</div>
+
+<div class="panel" id="notifications-panel">
+    <div class="panel-header">
+        <h3>Notifications</h3>
+        <button class="panel-close" id="notifications-close">&times;</button>
+    </div>
+    <div class="panel-content">
+        <p>No new notifications</p>
+    </div>
+</div>
+
+<div class="panel" id="profile-panel">
+    <div class="panel-header">
+        <img src="https://via.placeholder.com/40x40" alt="Profile" class="avatar">
+        <div>
+            <p class="username">Guest User</p>
+            <p class="useremail">Not logged in</p>
+        </div>
+    </div>
+    <div class="panel-menu">
+        <button class="menu-item">Settings</button>
+        <button class="menu-item">Help & Feedback</button>
+        <hr>
+        <button class="menu-item">Sign In</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
