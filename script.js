@@ -43,7 +43,7 @@ const storage = {
     clearHistory: () => {
         localStorage.removeItem('history');
     },
-    
+   
     getWatchLater: () => JSON.parse(localStorage.getItem('watchLater') || '[]'),
     toggleWatchLater: (id) => {
         const items = storage.getWatchLater();
@@ -53,7 +53,7 @@ const storage = {
         localStorage.setItem('watchLater', JSON.stringify(items));
         return index === -1;
     },
-    
+   
     getLiked: () => JSON.parse(localStorage.getItem('liked') || '[]'),
     toggleLiked: (id) => {
         const items = storage.getLiked();
@@ -63,7 +63,7 @@ const storage = {
         localStorage.setItem('liked', JSON.stringify(items));
         return index === -1;
     },
-    
+   
     getSubscriptions: () => JSON.parse(localStorage.getItem('subscriptions') || '[]'),
     toggleSubscription: (channel) => {
         const items = storage.getSubscriptions();
@@ -86,19 +86,19 @@ function getThumbnail(youtubeId) {
 
 function getFilteredVideos() {
     let filtered = VIDEOS;
-    
+   
     if (state.currentCategory !== 'All') {
         filtered = filtered.filter(v => v.category === state.currentCategory);
     }
-    
+   
     if (state.searchTerm.trim()) {
         const term = state.searchTerm.toLowerCase().trim();
-        filtered = filtered.filter(v => 
-            v.title.toLowerCase().includes(term) || 
+        filtered = filtered.filter(v =>
+            v.title.toLowerCase().includes(term) ||
             v.channel.toLowerCase().includes(term)
         );
     }
-    
+   
     return filtered;
 }
 
@@ -151,19 +151,19 @@ function goToPage(pageName) {
         const iframe = document.getElementById('video-player');
         if (iframe) iframe.src = '';
     }
-    
+   
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     const page = document.getElementById(`page-${pageName}`);
     if (page) page.classList.add('active');
-    
+   
     document.querySelectorAll('[data-page]').forEach(link => {
         link.classList.toggle('active', link.getAttribute('data-page') === pageName);
     });
-    
+   
     state.currentPage = pageName;
-    
+   
     closeSidebar();
-    
+   
     if (pageName === 'home') updateHome();
     else if (pageName === 'explore') updateExplore();
     else if (pageName === 'library') renderLibrary();
@@ -173,23 +173,23 @@ function goToPage(pageName) {
 function openVideo(id) {
     const video = getVideo(id);
     if (!video) return;
-    
+   
     storage.addHistory(id);
     state.currentVideoId = id;
-    
+   
     const player = document.getElementById('video-player');
     if (player) player.src = `https://www.youtube.com/embed/${video.youtubeId}?autoplay=1`;
-    
+   
     const title = document.getElementById('player-title');
     const meta = document.getElementById('player-meta');
     const channel = document.getElementById('player-channel');
     const avatar = document.getElementById('channel-avatar');
-    
+   
     if (title) title.textContent = video.title;
     if (meta) meta.textContent = `${video.views} views • ${video.date}`;
     if (channel) channel.textContent = video.channel;
     if (avatar) avatar.src = getThumbnail(video.youtubeId);
-    
+   
     updatePlayerButtons();
     goToPage('player');
 }
@@ -198,7 +198,7 @@ function updatePlayerButtons() {
     const id = state.currentVideoId;
     const likeBtn = document.getElementById('like-btn');
     const watchBtn = document.getElementById('watch-later-btn');
-    
+   
     if (likeBtn) {
         likeBtn.classList.toggle('active', storage.getLiked().includes(id));
     }
@@ -272,10 +272,10 @@ function renderSubscriptions() {
     const grid = document.getElementById('subscriptions-grid');
     const empty = document.getElementById('empty-state-subscriptions');
     if (!grid) return;
-    
+   
     const channels = [...new Set(VIDEOS.map(v => v.channel))];
     const subscriptions = storage.getSubscriptions();
-    
+   
     grid.innerHTML = '';
     channels.forEach(name => {
         const isSubscribed = subscriptions.includes(name);
@@ -298,7 +298,7 @@ function renderSubscriptions() {
         });
         grid.appendChild(div);
     });
-    
+   
     if (empty) empty.style.display = subscriptions.length ? 'none' : 'block';
 }
 
@@ -309,17 +309,17 @@ function initCategoryFilters() {
         if (!container) return;
         container.addEventListener('click', (e) => {
             if (!e.target.classList.contains('filter-btn')) return;
-            
+           
             container.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            
+           
             e.target.classList.add('active');
             state.currentCategory = e.target.getAttribute('data-category');
             pageUpdate();
         });
     };
-    
+   
     filterContainer('category-filters', updateHome);
     filterContainer('explore-filters', updateExplore);
 }
@@ -328,19 +328,19 @@ function initCategoryFilters() {
 function initSearch() {
     const form = document.getElementById('search-form');
     const input = document.getElementById('search-input');
-    
+   
     if (!form || !input) return;
-    
+   
     const performSearch = () => {
         state.searchTerm = input.value;
         updateHome();
     };
-    
+   
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         performSearch();
     });
-    
+   
     input.addEventListener('keyup', (e) => {
         if (e.key === 'Enter') performSearch();
     });
@@ -350,7 +350,7 @@ function initSearch() {
 function initPlayerButtons() {
     const likeBtn = document.getElementById('like-btn');
     const watchBtn = document.getElementById('watch-later-btn');
-    
+   
     if (likeBtn) {
         likeBtn.addEventListener('click', () => {
             storage.toggleLiked(state.currentVideoId);
@@ -358,7 +358,7 @@ function initPlayerButtons() {
             refreshCurrentPage();
         });
     }
-    
+   
     if (watchBtn) {
         watchBtn.addEventListener('click', () => {
             storage.toggleWatchLater(state.currentVideoId);
@@ -366,7 +366,7 @@ function initPlayerButtons() {
             refreshCurrentPage();
         });
     }
-    
+   
     const backBtn = document.getElementById('back-btn');
     if (backBtn) {
         backBtn.addEventListener('click', (e) => {
@@ -384,7 +384,7 @@ function initNav() {
             goToPage(link.getAttribute('data-page'));
         });
     });
-    
+   
     const homeLink = document.getElementById('home-link');
     if (homeLink) {
         homeLink.addEventListener('click', (e) => {
@@ -403,14 +403,14 @@ function closeSidebar() {
 function initMobileSidebar() {
     const toggle = document.getElementById('menu-toggle');
     const sidebar = document.getElementById('sidebar');
-    
+   
     if (!toggle || !sidebar) return;
-    
+   
     toggle.addEventListener('click', (e) => {
         e.preventDefault();
         sidebar.classList.toggle('open');
     });
-    
+   
     document.addEventListener('click', (e) => {
         if (!e.target.closest('.sidebar') && !e.target.closest('.menu-toggle')) {
             closeSidebar();
@@ -423,15 +423,15 @@ function initPanels() {
     const setupPanel = (btnId, panelId, closeId = null) => {
         const btn = document.getElementById(btnId);
         const panel = document.getElementById(panelId);
-        
+       
         if (!btn || !panel) return;
-        
+       
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
             closeAllPanels();
             panel.classList.add('active');
         });
-        
+       
         if (closeId) {
             const closeBtn = document.getElementById(closeId);
             if (closeBtn) {
@@ -441,17 +441,17 @@ function initPanels() {
             }
         }
     };
-    
+   
     const closeAllPanels = () => {
         document.getElementById('upload-modal')?.classList.remove('active');
         document.getElementById('notifications-panel')?.classList.remove('active');
         document.getElementById('profile-panel')?.classList.remove('active');
     };
-    
+   
     setupPanel('upload-btn', 'upload-modal', 'upload-close');
     setupPanel('notifications-btn', 'notifications-panel', 'notifications-close');
     setupPanel('profile-btn', 'profile-panel');
-    
+   
     document.addEventListener('click', (e) => {
         if (!e.target.closest('.header-actions') && !e.target.closest('.panel') && !e.target.closest('.modal')) {
             closeAllPanels();
@@ -488,7 +488,7 @@ function initLibrary() {
 document.addEventListener('DOMContentLoaded', () => {
     renderVideos(VIDEOS, 'video-grid');
     renderVideos(VIDEOS, 'explore-grid');
-    
+   
     initCategoryFilters();
     initSearch();
     initPlayerButtons();
@@ -496,6 +496,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileSidebar();
     initPanels();
     initLibrary();
-    
+   
     goToPage('home');
 });
