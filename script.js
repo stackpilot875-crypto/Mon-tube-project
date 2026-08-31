@@ -15,8 +15,7 @@ const VIDEOS = [
         date: '2 days ago',
         duration: '12:45',
         category: 'Technology',
-        thumbnail: 'https://via.placeholder.com/320x180?text=Tech+1',
-        youtubeId: 'dQw4w9WgXcQ'
+        youtubeId: 'y8OnoxKSXOU'
     },
     {
         id: 2,
@@ -26,7 +25,6 @@ const VIDEOS = [
         date: '1 week ago',
         duration: '8:30',
         category: 'Education',
-        thumbnail: 'https://via.placeholder.com/320x180?text=Wellness+1',
         youtubeId: 'dQw4w9WgXcQ'
     },
     {
@@ -37,8 +35,7 @@ const VIDEOS = [
         date: '3 days ago',
         duration: '15:12',
         category: 'Gaming',
-        thumbnail: 'https://via.placeholder.com/320x180?text=Gaming+1',
-        youtubeId: 'dQw4w9WgXcQ'
+        youtubeId: 'ZZ5LpwO-An4'
     },
     {
         id: 4,
@@ -48,8 +45,7 @@ const VIDEOS = [
         date: '5 days ago',
         duration: '22:05',
         category: 'Cooking',
-        thumbnail: 'https://via.placeholder.com/320x180?text=Cooking+1',
-        youtubeId: 'dQw4w9WgXcQ'
+        youtubeId: 'OIvHMR3G_rE'
     },
     {
         id: 5,
@@ -59,8 +55,7 @@ const VIDEOS = [
         date: '1 day ago',
         duration: '19:33',
         category: 'Travel',
-        thumbnail: 'https://via.placeholder.com/320x180?text=Travel+1',
-        youtubeId: 'dQw4w9WgXcQ'
+        youtubeId: 'W0LHQG18plc'
     },
     {
         id: 6,
@@ -70,8 +65,7 @@ const VIDEOS = [
         date: '4 days ago',
         duration: '11:20',
         category: 'Technology',
-        thumbnail: 'https://via.placeholder.com/320x180?text=Web+Dev+1',
-        youtubeId: 'dQw4w9WgXcQ'
+        youtubeId: 'qz0aGYrrlhU'
     },
     {
         id: 7,
@@ -81,8 +75,7 @@ const VIDEOS = [
         date: '2 weeks ago',
         duration: '30:15',
         category: 'Sports',
-        thumbnail: 'https://via.placeholder.com/320x180?text=Fitness+1',
-        youtubeId: 'dQw4w9WgXcQ'
+        youtubeId: 'nUUz5hsP8nc'
     },
     {
         id: 8,
@@ -92,8 +85,7 @@ const VIDEOS = [
         date: '6 days ago',
         duration: '13:47',
         category: 'Music',
-        thumbnail: 'https://via.placeholder.com/320x180?text=Music+1',
-        youtubeId: 'dQw4w9WgXcQ'
+        youtubeId: 'AhWHyeXHN24'
     },
     {
         id: 9,
@@ -103,8 +95,7 @@ const VIDEOS = [
         date: '10 days ago',
         duration: '25:58',
         category: 'Education',
-        thumbnail: 'https://via.placeholder.com/320x180?text=Animation+1',
-        youtubeId: 'dQw4w9WgXcQ'
+        youtubeId: '_eSS-aVy74c'
     },
     {
         id: 10,
@@ -114,8 +105,7 @@ const VIDEOS = [
         date: '3 weeks ago',
         duration: '16:42',
         category: 'Education',
-        thumbnail: 'https://via.placeholder.com/320x180?text=Photo+1',
-        youtubeId: 'dQw4w9WgXcQ'
+        youtubeId: '4Ky_5J78GF4'
     },
     {
         id: 11,
@@ -125,8 +115,7 @@ const VIDEOS = [
         date: '8 days ago',
         duration: '9:55',
         category: 'Cooking',
-        thumbnail: 'https://via.placeholder.com/320x180?text=DIY+1',
-        youtubeId: 'dQw4w9WgXcQ'
+        youtubeId: '6HjLe-1wkPk'
     },
     {
         id: 12,
@@ -136,8 +125,7 @@ const VIDEOS = [
         date: '12 days ago',
         duration: '21:18',
         category: 'Technology',
-        thumbnail: 'https://via.placeholder.com/320x180?text=Space+1',
-        youtubeId: 'dQw4w9WgXcQ'
+        youtubeId: 'kKKM8Y-u7ds'
     }
 ];
 
@@ -220,6 +208,29 @@ const StorageManager = {
     
     isLiked(videoId) {
         return this.getLikedVideos().includes(videoId);
+    },
+
+    // Subscriptions
+    getSubscriptions() {
+        const subscriptions = localStorage.getItem('mon-tube-subscriptions');
+        return subscriptions ? JSON.parse(subscriptions) : [];
+    },
+    
+    toggleSubscription(channelName) {
+        const subscriptions = this.getSubscriptions();
+        if (subscriptions.includes(channelName)) {
+            const filtered = subscriptions.filter(name => name !== channelName);
+            localStorage.setItem('mon-tube-subscriptions', JSON.stringify(filtered));
+            return false;
+        } else {
+            subscriptions.push(channelName);
+            localStorage.setItem('mon-tube-subscriptions', JSON.stringify(subscriptions));
+            return true;
+        }
+    },
+    
+    isSubscribed(channelName) {
+        return this.getSubscriptions().includes(channelName);
     }
 };
 
@@ -228,14 +239,13 @@ const StorageManager = {
 // ============================================================================
 
 function createVideoCard(video) {
-    const isLiked = StorageManager.isLiked(video.id);
-    const inWatchLater = StorageManager.isInWatchLater(video.id);
-    
     const card = document.createElement('article');
     card.className = 'video-card';
+    const thumbnailUrl = `https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`;
+    
     card.innerHTML = `
         <div class="video-thumbnail">
-            <img src="${video.thumbnail}" alt="${video.title}">
+            <img src="${thumbnailUrl}" alt="${video.title}">
             <span class="video-duration">${video.duration}</span>
         </div>
         <div class="video-info">
@@ -356,18 +366,9 @@ function initializeSearch() {
     
     function performSearch() {
         APP_STATE.searchTerm = searchInput.value;
-        APP_STATE.currentCategory = 'All';
         
-        // Reset category buttons
-        const categoryButtons = document.querySelectorAll('#category-filters .filter-btn');
-        categoryButtons.forEach(btn => {
-            if (btn.getAttribute('data-category') === 'All') {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
-            }
-        });
-        
+        // Keep the current category selection - don't reset it
+        // This allows searching within a selected category
         updateVideoDisplay();
     }
     
@@ -401,15 +402,24 @@ function openVideo(videoId) {
     // Update state
     APP_STATE.currentVideoId = videoId;
     
-    // Update player
-    document.getElementById('youtube-player').src = 
-        `https://www.youtube.com/embed/${video.youtubeId}`;
-    document.getElementById('player-title').textContent = video.title;
-    document.getElementById('player-channel').textContent = video.channel;
-    document.getElementById('player-views').textContent = `${video.views} views`;
-    document.getElementById('player-date').textContent = video.date;
-    document.getElementById('player-avatar').src = 
-        `https://via.placeholder.com/48x48?text=${video.channel.charAt(0)}`;
+    // Get player element and update
+    const playerElement = document.getElementById('youtube-player');
+    if (playerElement) {
+        playerElement.src = `https://www.youtube.com/embed/${video.youtubeId}?autoplay=1`;
+    }
+    
+    // Update title and info
+    const titleElement = document.getElementById('player-title');
+    const channelElement = document.getElementById('player-channel');
+    const viewsElement = document.getElementById('player-views');
+    const dateElement = document.getElementById('player-date');
+    const avatarElement = document.getElementById('player-avatar');
+    
+    if (titleElement) titleElement.textContent = video.title;
+    if (channelElement) channelElement.textContent = video.channel;
+    if (viewsElement) viewsElement.textContent = `${video.views} views`;
+    if (dateElement) dateElement.textContent = video.date;
+    if (avatarElement) avatarElement.src = `https://via.placeholder.com/48x48?text=${video.channel.charAt(0)}`;
     
     // Update buttons
     updatePlayerButtons();
@@ -438,6 +448,21 @@ function updatePlayerButtons() {
     }
 }
 
+function refreshCurrentPage() {
+    // Refresh the display of the current page
+    if (APP_STATE.currentPage === 'history') {
+        renderHistory();
+    } else if (APP_STATE.currentPage === 'watch-later') {
+        renderWatchLater();
+    } else if (APP_STATE.currentPage === 'liked-videos') {
+        renderLikedVideos();
+    } else if (APP_STATE.currentPage === 'home') {
+        updateVideoDisplay();
+    } else if (APP_STATE.currentPage === 'explore') {
+        updateExploreDisplay();
+    }
+}
+
 function initializePlayerButtons() {
     const likeButton = document.getElementById('like-button');
     const watchLaterButton = document.getElementById('watch-later-button');
@@ -451,6 +476,9 @@ function initializePlayerButtons() {
         } else {
             this.classList.remove('active');
         }
+        
+        // Refresh current page in case it's the liked videos page
+        refreshCurrentPage();
     });
     
     watchLaterButton.addEventListener('click', function() {
@@ -462,6 +490,9 @@ function initializePlayerButtons() {
             StorageManager.addToWatchLater(videoId);
             this.classList.add('active');
         }
+        
+        // Refresh current page in case it's the watch later page
+        refreshCurrentPage();
     });
 }
 
@@ -523,26 +554,58 @@ function renderSubscriptions() {
     
     // Get unique channels
     const channels = [...new Set(VIDEOS.map(v => v.channel))];
+    const subscriptions = StorageManager.getSubscriptions();
     
     container.innerHTML = '';
+    
+    // Show subscribed channels
     channels.forEach(channelName => {
+        const isSubscribed = StorageManager.isSubscribed(channelName);
         const card = document.createElement('div');
         card.className = 'subscription-card';
         card.innerHTML = `
             <img src="https://via.placeholder.com/80x80?text=${channelName.charAt(0)}" alt="${channelName}" class="subscription-avatar">
             <p class="subscription-name">${channelName}</p>
             <p class="subscription-subscribers">Sample channel</p>
+            <button class="subscription-toggle" data-channel="${channelName}">
+                ${isSubscribed ? 'Subscribed' : 'Subscribe'}
+            </button>
         `;
+        
+        // Add event listener to subscribe button
+        const button = card.querySelector('.subscription-toggle');
+        button.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const channelName = this.getAttribute('data-channel');
+            const isNowSubscribed = StorageManager.toggleSubscription(channelName);
+            this.textContent = isNowSubscribed ? 'Subscribed' : 'Subscribe';
+            this.classList.toggle('active');
+        });
+        
+        if (isSubscribed) {
+            button.classList.add('active');
+        }
+        
         container.appendChild(card);
     });
     
     const emptyState = document.getElementById('empty-state-subscriptions');
-    emptyState.style.display = 'none';
+    emptyState.style.display = subscriptions.length === 0 ? 'block' : 'none';
 }
 
-
+// ============================================================================
+// 13. PAGE NAVIGATION
+// ============================================================================
 
 function goToPage(pageName) {
+    // Stop YouTube player if leaving player page
+    if (APP_STATE.currentPage === 'player' && pageName !== 'player') {
+        const playerElement = document.getElementById('youtube-player');
+        if (playerElement) {
+            playerElement.src = '';
+        }
+    }
+    
     // Hide all pages
     document.querySelectorAll('.page-section').forEach(section => {
         section.classList.remove('active');
@@ -623,7 +686,80 @@ function initializeNavigation() {
 }
 
 // ============================================================================
-// 14. MOBILE MENU
+// 14. HEADER PANELS
+// ============================================================================
+
+function initializeHeaderPanels() {
+    // Upload button
+    const uploadBtn = document.getElementById('upload-btn');
+    const uploadPanel = document.getElementById('upload-panel');
+    const uploadClose = document.getElementById('upload-close');
+    
+    if (uploadBtn && uploadPanel) {
+        uploadBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            uploadPanel.classList.toggle('active');
+            // Close notifications and profile panels
+            document.getElementById('notifications-panel').classList.remove('active');
+            document.getElementById('profile-panel').classList.remove('active');
+        });
+        
+        uploadClose.addEventListener('click', function() {
+            uploadPanel.classList.remove('active');
+        });
+        
+        uploadPanel.addEventListener('click', function(e) {
+            if (e.target === uploadPanel) {
+                uploadPanel.classList.remove('active');
+            }
+        });
+    }
+    
+    // Notifications button
+    const notificationsBtn = document.getElementById('notifications-btn');
+    const notificationsPanel = document.getElementById('notifications-panel');
+    const notificationsClose = document.getElementById('notifications-close');
+    
+    if (notificationsBtn && notificationsPanel) {
+        notificationsBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            notificationsPanel.classList.toggle('active');
+            // Close upload and profile panels
+            document.getElementById('upload-panel').classList.remove('active');
+            document.getElementById('profile-panel').classList.remove('active');
+        });
+        
+        notificationsClose.addEventListener('click', function() {
+            notificationsPanel.classList.remove('active');
+        });
+    }
+    
+    // Profile button
+    const profileBtn = document.getElementById('profile-btn');
+    const profilePanel = document.getElementById('profile-panel');
+    
+    if (profileBtn && profilePanel) {
+        profileBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            profilePanel.classList.toggle('active');
+            // Close upload and notifications panels
+            document.getElementById('upload-panel').classList.remove('active');
+            document.getElementById('notifications-panel').classList.remove('active');
+        });
+    }
+    
+    // Close panels when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.user-section')) {
+            document.getElementById('upload-panel').classList.remove('active');
+            document.getElementById('notifications-panel').classList.remove('active');
+            document.getElementById('profile-panel').classList.remove('active');
+        }
+    });
+}
+
+// ============================================================================
+// 15. MOBILE MENU
 // ============================================================================
 
 function initializeMobileMenu() {
@@ -646,7 +782,7 @@ function initializeMobileMenu() {
 }
 
 // ============================================================================
-// 15. INITIALIZATION
+// 16. INITIALIZATION
 // ============================================================================
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -660,6 +796,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializePlayerButtons();
     initializeNavigation();
     initializeMobileMenu();
+    initializeHeaderPanels();
     
     // Set initial home page
     goToPage('home');

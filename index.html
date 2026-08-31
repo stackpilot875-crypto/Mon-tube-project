@@ -38,15 +38,53 @@
 
             <!-- User/Profile Area -->
             <div class="user-section">
-                <button class="icon-button" aria-label="Upload video">
+                <button class="icon-button" id="upload-btn" aria-label="Upload video">
                     ⬆️
                 </button>
-                <button class="icon-button" aria-label="Notifications">
+                <button class="icon-button" id="notifications-btn" aria-label="Notifications">
                     🔔
                 </button>
-                <button class="profile-button" aria-label="Profile menu">
+                <button class="profile-button" id="profile-btn" aria-label="Profile menu">
                     👤
                 </button>
+            </div>
+        </div>
+
+        <!-- Upload Panel -->
+        <div class="modal-overlay" id="upload-panel">
+            <div class="modal-content">
+                <button class="modal-close" id="upload-close">&times;</button>
+                <h2>Upload Video</h2>
+                <p>This feature is coming soon. In a real application, you would be able to upload your own videos here.</p>
+                <p style="font-size: 12px; color: #aaa; margin-top: 16px;">For now, Mon-Tube displays videos from YouTube.</p>
+            </div>
+        </div>
+
+        <!-- Notifications Panel -->
+        <div class="notifications-panel" id="notifications-panel">
+            <div class="notifications-header">
+                <h3>Notifications</h3>
+                <button class="notifications-close" id="notifications-close">&times;</button>
+            </div>
+            <div class="notifications-content">
+                <p style="padding: 16px; color: #aaa; text-align: center;">No new notifications</p>
+            </div>
+        </div>
+
+        <!-- Profile Panel -->
+        <div class="profile-panel" id="profile-panel">
+            <div class="profile-header">
+                <img src="https://via.placeholder.com/40x40?text=U" alt="Profile" class="profile-avatar">
+                <div>
+                    <p class="profile-username">Guest User</p>
+                    <p class="profile-email">Not logged in</p>
+                </div>
+            </div>
+            <div class="profile-menu">
+                <button class="profile-menu-item">Settings</button>
+                <button class="profile-menu-item">Help & feedback</button>
+                <hr style="border: none; border-top: 1px solid #303030; margin: 8px 0;">
+                <button class="profile-menu-item">Sign in</button>
             </div>
         </div>
     </header>
