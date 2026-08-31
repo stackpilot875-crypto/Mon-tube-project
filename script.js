@@ -18,12 +18,15 @@ const VIDEOS = [
     { id: 12, title: 'Space Exploration: Latest NASA Missions Explained', channel: 'Science Explorer', views: '1.5M', date: '12 days ago', duration: '21:18', category: 'Technology', youtubeId: 'kKKM8Y-u7ds' }
 ];
 
+const DEFAULT_AVATAR = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><circle cx='20' cy='20' r='20' fill='%23272727'/><circle cx='20' cy='15' r='6' fill='%23aaaaaa'/><path d='M10 32c0-5.5 4.5-8 10-8s10 2.5 10 8' fill='%23aaaaaa'/></svg>";
+
 // APPLICATION STATE
 const state = {
     currentPage: 'home',
     currentCategory: 'All',
     searchTerm: '',
-    currentVideoId: null
+    currentVideoId: null,
+    currentLibraryTab: 'history'
 };
 
 // LOCALSTORAGE MANAGEMENT
@@ -31,9 +34,14 @@ const storage = {
     getHistory: () => JSON.parse(localStorage.getItem('history') || '[]'),
     addHistory: (id) => {
         const history = storage.getHistory();
+        const existingIdx = history.indexOf(id);
+        if (existingIdx > -1) history.splice(existingIdx, 1);
         history.unshift(id);
         history.splice(50);
-        localStorage.setItem('history', JSON.stringify([...new Set(history)]));
+        localStorage.setItem('history', JSON.stringify(history));
+    },
+    clearHistory: () => {
+        localStorage.removeItem('history');
     },
     
     getWatchLater: () => JSON.parse(localStorage.getItem('watchLater') || '[]'),
@@ -104,7 +112,7 @@ function createVideoCard(video) {
             <span class="video-duration">${video.duration}</span>
         </div>
         <div class="video-info">
-            <img src="https://via.placeholder.com/40x40" alt="" class="video-avatar">
+            <img src="${DEFAULT_AVATAR}" alt="" class="video-avatar">
             <div class="video-details">
                 <p class="video-title">${video.title}</p>
                 <p class="video-channel">${video.channel}</p>
@@ -158,9 +166,7 @@ function goToPage(pageName) {
     
     if (pageName === 'home') updateHome();
     else if (pageName === 'explore') updateExplore();
-    else if (pageName === 'history') renderHistory();
-    else if (pageName === 'watch-later') renderWatchLater();
-    else if (pageName === 'liked-videos') renderLikedVideos();
+    else if (pageName === 'library') renderLibrary();
     else if (pageName === 'subscriptions') renderSubscriptions();
 }
 
@@ -202,31 +208,63 @@ function updatePlayerButtons() {
 }
 
 function refreshCurrentPage() {
-    if (state.currentPage === 'liked-videos') renderLikedVideos();
-    else if (state.currentPage === 'watch-later') renderWatchLater();
-    else if (state.currentPage === 'history') renderHistory();
+    if (state.currentPage === 'library') renderLibrary();
 }
 
-// HISTORY, WATCH LATER, LIKED
-function renderHistory() {
-    const videos = storage.getHistory().map(getVideo).filter(Boolean);
-    renderVideos(videos, 'history-grid');
-    const empty = document.getElementById('empty-state-history');
-    if (empty) empty.style.display = videos.length ? 'none' : 'block';
+// LIBRARY RENDERING & COUNTS
+function updateLibraryCounts() {
+    const historyVideos = storage.getHistory().map(getVideo).filter(Boolean);
+    const watchLaterVideos = storage.getWatchLater().map(getVideo).filter(Boolean);
+    const likedVideos = storage.getLiked().map(getVideo).filter(Boolean);
+
+    const historyCount = document.getElementById('history-count');
+    const watchLaterCount = document.getElementById('watch-later-count');
+    const likedCount = document.getElementById('liked-count');
+
+    if (historyCount) historyCount.textContent = `${historyVideos.length} video${historyVideos.length === 1 ? '' : 's'}`;
+    if (watchLaterCount) watchLaterCount.textContent = `${watchLaterVideos.length} video${watchLaterVideos.length === 1 ? '' : 's'}`;
+    if (likedCount) likedCount.textContent = `${likedVideos.length} video${likedVideos.length === 1 ? '' : 's'}`;
 }
 
-function renderWatchLater() {
-    const videos = storage.getWatchLater().map(getVideo).filter(Boolean);
-    renderVideos(videos, 'watch-later-grid');
-    const empty = document.getElementById('empty-state-watch-later');
-    if (empty) empty.style.display = videos.length ? 'none' : 'block';
-}
+function renderLibrary() {
+    updateLibraryCounts();
 
-function renderLikedVideos() {
-    const videos = storage.getLiked().map(getVideo).filter(Boolean);
-    renderVideos(videos, 'liked-grid');
-    const empty = document.getElementById('empty-state-liked');
-    if (empty) empty.style.display = videos.length ? 'none' : 'block';
+    const tab = state.currentLibraryTab;
+    const titleEl = document.getElementById('library-section-title');
+    const emptyEl = document.getElementById('library-empty-state');
+    const clearHistoryBtn = document.getElementById('clear-history-btn');
+
+    document.querySelectorAll('.library-tab-card').forEach(card => {
+        card.classList.toggle('active', card.getAttribute('data-library-tab') === tab);
+    });
+
+    let videos = [];
+    let title = 'History';
+    let emptyText = 'No watch history';
+
+    if (tab === 'history') {
+        videos = storage.getHistory().map(getVideo).filter(Boolean);
+        title = 'Watch History';
+        emptyText = 'No watch history yet';
+        if (clearHistoryBtn) clearHistoryBtn.style.display = videos.length ? 'inline-block' : 'none';
+    } else if (tab === 'watch-later') {
+        videos = storage.getWatchLater().map(getVideo).filter(Boolean);
+        title = 'Watch Later';
+        emptyText = 'No saved videos in Watch Later';
+        if (clearHistoryBtn) clearHistoryBtn.style.display = 'none';
+    } else if (tab === 'liked') {
+        videos = storage.getLiked().map(getVideo).filter(Boolean);
+        title = 'Liked Videos';
+        emptyText = 'No liked videos yet';
+        if (clearHistoryBtn) clearHistoryBtn.style.display = 'none';
+    }
+
+    if (titleEl) titleEl.textContent = title;
+    renderVideos(videos, 'library-video-grid');
+    if (emptyEl) {
+        emptyEl.textContent = emptyText;
+        emptyEl.style.display = videos.length ? 'none' : 'block';
+    }
 }
 
 // SUBSCRIPTIONS
@@ -244,7 +282,7 @@ function renderSubscriptions() {
         const div = document.createElement('div');
         div.className = 'subscription-card';
         div.innerHTML = `
-            <img src="https://via.placeholder.com/80x80" alt="${name}" class="avatar">
+            <img src="${DEFAULT_AVATAR}" alt="${name}" class="avatar">
             <p class="channel-name">${name}</p>
             <p class="channel-meta">Sample channel</p>
             <button class="subscription-toggle ${isSubscribed ? 'active' : ''}" data-channel="${name}">
@@ -421,14 +459,29 @@ function initPanels() {
     });
 }
 
-// LIBRARY NAVIGATION
+// LIBRARY NAVIGATION & TABS
 function initLibrary() {
-    document.querySelectorAll('.library-card').forEach(card => {
-        card.addEventListener('click', (e) => {
+    const tabsContainer = document.getElementById('library-tabs');
+    if (tabsContainer) {
+        tabsContainer.addEventListener('click', (e) => {
+            const card = e.target.closest('.library-tab-card');
+            if (!card) return;
             e.preventDefault();
-            goToPage(card.getAttribute('data-page'));
+            const tabName = card.getAttribute('data-library-tab');
+            if (tabName) {
+                state.currentLibraryTab = tabName;
+                renderLibrary();
+            }
         });
-    });
+    }
+
+    const clearHistoryBtn = document.getElementById('clear-history-btn');
+    if (clearHistoryBtn) {
+        clearHistoryBtn.addEventListener('click', () => {
+            storage.clearHistory();
+            renderLibrary();
+        });
+    }
 }
 
 // INITIALIZATION

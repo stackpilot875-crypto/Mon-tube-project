@@ -40,9 +40,6 @@
     
     <nav class="sidebar-nav">
         <a href="#" data-page="library" class="nav-link">📚 Library</a>
-        <a href="#" data-page="history" class="nav-link">⏱️ History</a>
-        <a href="#" data-page="watch-later" class="nav-link">⏲️ Watch Later</a>
-        <a href="#" data-page="liked-videos" class="nav-link">👍 Liked</a>
     </nav>
 </aside>
 
@@ -111,7 +108,7 @@
             </div>
             
             <div class="channel-info">
-                <img id="channel-avatar" src="https://via.placeholder.com/48x48" alt="Channel" class="avatar">
+                <img id="channel-avatar" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><circle cx='20' cy='20' r='20' fill='%23272727'/><circle cx='20' cy='15' r='6' fill='%23aaaaaa'/><path d='M10 32c0-5.5 4.5-8 10-8s10 2.5 10 8' fill='%23aaaaaa'/></svg>" alt="Channel" class="avatar">
                 <div>
                     <p id="player-channel" class="channel-name">Channel</p>
                     <p class="channel-meta">Sample channel</p>
@@ -131,32 +128,41 @@
     <!-- LIBRARY PAGE -->
     <section id="page-library" class="page">
         <h1 class="page-title">Library</h1>
-        <div class="library-grid">
-            <a href="#" data-page="history" class="library-card">⏱️ History</a>
-            <a href="#" data-page="watch-later" class="library-card">⏲️ Watch Later</a>
-            <a href="#" data-page="liked-videos" class="library-card">👍 Liked Videos</a>
+        
+        <div class="library-tabs" id="library-tabs">
+            <button class="library-tab-card active" data-library-tab="history">
+                <div class="library-tab-icon">⏱️</div>
+                <div class="library-tab-info">
+                    <span class="library-tab-name">History</span>
+                    <span class="library-tab-count" id="history-count">0 videos</span>
+                </div>
+            </button>
+            <button class="library-tab-card" data-library-tab="watch-later">
+                <div class="library-tab-icon">⏲️</div>
+                <div class="library-tab-info">
+                    <span class="library-tab-name">Watch Later</span>
+                    <span class="library-tab-count" id="watch-later-count">0 videos</span>
+                </div>
+            </button>
+            <button class="library-tab-card" data-library-tab="liked">
+                <div class="library-tab-icon">👍</div>
+                <div class="library-tab-info">
+                    <span class="library-tab-name">Liked Videos</span>
+                    <span class="library-tab-count" id="liked-count">0 videos</span>
+                </div>
+            </button>
         </div>
-    </section>
 
-    <!-- HISTORY PAGE -->
-    <section id="page-history" class="page">
-        <h1 class="page-title">History</h1>
-        <div class="video-grid" id="history-grid"></div>
-        <div class="empty-state" id="empty-state-history">No watch history</div>
-    </section>
+        <div class="library-section-header">
+            <h2 class="library-section-title" id="library-section-title">History</h2>
+            <button class="clear-btn" id="clear-history-btn" style="display:none">Clear All</button>
+        </div>
 
-    <!-- WATCH LATER PAGE -->
-    <section id="page-watch-later" class="page">
-        <h1 class="page-title">Watch Later</h1>
-        <div class="video-grid" id="watch-later-grid"></div>
-        <div class="empty-state" id="empty-state-watch-later">No videos saved</div>
-    </section>
-
-    <!-- LIKED VIDEOS PAGE -->
-    <section id="page-liked-videos" class="page">
-        <h1 class="page-title">Liked Videos</h1>
-        <div class="video-grid" id="liked-grid"></div>
-        <div class="empty-state" id="empty-state-liked">No liked videos yet</div>
+        <div class="video-grid" id="library-video-grid"></div>
+        
+        <div class="empty-state" id="library-empty-state" style="display:none">
+            No watch history
+        </div>
     </section>
 
 </main>
@@ -182,7 +188,7 @@
 
 <div class="panel" id="profile-panel">
     <div class="panel-header">
-        <img src="https://via.placeholder.com/40x40" alt="Profile" class="avatar">
+        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><circle cx='20' cy='20' r='20' fill='%23272727'/><circle cx='20' cy='15' r='6' fill='%23aaaaaa'/><path d='M10 32c0-5.5 4.5-8 10-8s10 2.5 10 8' fill='%23aaaaaa'/></svg>" alt="Profile" class="avatar">
         <div>
             <p class="username">Guest User</p>
             <p class="useremail">Not logged in</p>
