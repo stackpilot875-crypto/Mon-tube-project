@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon-Tube | Video Sharing</title>
+    <title>Mon-Tube | Real YouTube Videos</title>
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- YOUTUBE API KEY -->
+    <script>
+        window.YOUTUBE_API_KEY = 'AIzaSyDsDw_6Ow9_HrwyrS1vf9aB4iA4wWsvmjU';
+    </script>
 </head>
 <body>
 
 <!-- HEADER -->
 <header class="header">
     <div class="header-content">
-        <a href="#" class="logo" id="home-link">Mon Tube</a>
+        <a href="#" class="logo" id="home-link">Mon-Tube</a>
        
         <form class="search-bar" id="search-form">
-            <input type="text" id="search-input" placeholder="Search..." class="search-input">
+            <input type="text" id="search-input" placeholder="Search YouTube..." class="search-input">
             <button type="submit" class="search-btn">🔍</button>
         </form>
        
@@ -48,7 +53,7 @@
 
     <!-- HOME PAGE -->
     <section id="page-home" class="page active">
-        <h1 class="page-title">Recommended for You</h1>
+        <h1 class="page-title">Search for Videos</h1>
        
         <div class="category-filters" id="category-filters">
             <button class="filter-btn active" data-category="All">All</button>
@@ -68,19 +73,17 @@
         </div>
     </section>
 
-    <!-- EXPLORE PAGE -->
+    <!-- EXPLORE PAGE - TRENDING VIDEOS -->
     <section id="page-explore" class="page">
-        <h1 class="page-title">Explore</h1>
+        <h1 class="page-title">Trending Videos</h1>
        
         <div class="category-filters" id="explore-filters">
-            <button class="filter-btn active" data-category="All">All</button>
-            <button class="filter-btn" data-category="Gaming">Gaming</button>
+            <button class="filter-btn active" data-category="Trending">Trending</button>
             <button class="filter-btn" data-category="Music">Music</button>
-            <button class="filter-btn" data-category="Technology">Technology</button>
-            <button class="filter-btn" data-category="Education">Education</button>
+            <button class="filter-btn" data-category="Gaming">Gaming</button>
+            <button class="filter-btn" data-category="News">News</button>
             <button class="filter-btn" data-category="Sports">Sports</button>
-            <button class="filter-btn" data-category="Travel">Travel</button>
-            <button class="filter-btn" data-category="Cooking">Cooking</button>
+            <button class="filter-btn" data-category="Entertainment">Entertainment</button>
         </div>
        
         <div class="video-grid" id="explore-grid"></div>
@@ -100,7 +103,7 @@
        
         <div class="player-info">
             <h1 id="player-title">Video Title</h1>
-            <p id="player-meta">0 views • Unknown date</p>
+            <p id="player-meta">YouTube Video</p>
            
             <div class="player-actions">
                 <button class="action-btn" id="like-btn">👍 Like</button>
@@ -111,7 +114,7 @@
                 <img id="channel-avatar" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><circle cx='20' cy='20' r='20' fill='%23272727'/><circle cx='20' cy='15' r='6' fill='%23aaaaaa'/><path d='M10 32c0-5.5 4.5-8 10-8s10 2.5 10 8' fill='%23aaaaaa'/></svg>" alt="Channel" class="avatar">
                 <div>
                     <p id="player-channel" class="channel-name">Channel</p>
-                    <p class="channel-meta">Sample channel</p>
+                    <p class="channel-meta">YouTube Channel</p>
                 </div>
                 <button class="subscribe-btn">Subscribe</button>
             </div>
@@ -172,7 +175,7 @@
     <div class="modal-box">
         <button class="modal-close" id="upload-close">&times;</button>
         <h2>Upload Video</h2>
-        <p>Upload feature coming soon. Mon-Tube currently displays videos from YouTube.</p>
+        <p>Upload feature coming soon. Mon-Tube searches and streams real YouTube videos.</p>
     </div>
 </div>
 
@@ -202,6 +205,7 @@
     </div>
 </div>
 
+<!-- Use the YouTube API version of script -->
 <script src="script.js"></script>
 </body>
 </html>

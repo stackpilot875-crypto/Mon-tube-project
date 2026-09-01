@@ -54,7 +54,7 @@ button {
 hr {
     border: none;
     border-top: 1px solid var(--border);
-    margin: var(--spacing) * 2 0;
+    margin: calc(var(--spacing) * 2) 0;
 }
 
 /* ============================================================================
@@ -162,7 +162,7 @@ hr {
 }
 
 /* ============================================================================
-   SIDEBAR - GLASS MORPHISM WITH MECHANICAL NAVIGATION
+   SIDEBAR - Glass Design with Mechanical Selector
    ============================================================================ */
 
 .sidebar {
@@ -171,19 +171,18 @@ hr {
     top: var(--header-height);
     width: var(--sidebar-width);
     height: calc(100vh - var(--header-height));
-    background: rgba(24, 24, 24, 0.85);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border-right: 1px solid rgba(0, 212, 255, 0.15);
+    background: rgba(24, 24, 24, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-right: 1px solid rgba(48, 48, 48, 0.6);
+    box-shadow: -4px 0 16px rgba(0, 0, 0, 0.4);
     padding: 16px 0;
     overflow-y: auto;
     z-index: 50;
-    box-shadow: inset -1px 0 0 rgba(0, 212, 255, 0.1), 
-                -2px 8px 12px rgba(0, 0, 0, 0.3);
 }
 
 .sidebar-nav {
-    padding: 0 16px;
+    padding: 0 12px;
 }
 
 .nav-link {
@@ -192,61 +191,49 @@ hr {
     border-radius: var(--radius);
     color: var(--text-secondary);
     font-size: 14px;
-    transition: all 150ms ease;
+    font-weight: 500;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
     margin-bottom: 4px;
-    position: relative;
-    background: rgba(255, 255, 255, 0);
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid transparent;
+    position: relative;
 }
 
 .nav-link:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.08);
     color: var(--text-primary);
-    border-color: rgba(0, 212, 255, 0.2);
+    border: 1px solid rgba(0, 212, 255, 0.2);
 }
 
-/* Active navigation with mechanical lock-in animation */
 .nav-link.active {
-    animation: mechanicalLockIn 350ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    color: var(--accent);
+    font-weight: 600;
+    background: rgba(0, 212, 255, 0.12);
+    border: 1px solid rgba(0, 212, 255, 0.4);
+    transform: translateX(8px);
+    box-shadow: 
+        inset 0 0 8px rgba(0, 212, 255, 0.2),
+        0 0 16px rgba(0, 212, 255, 0.3),
+        0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* Mechanical lock-in animation: idle → glow → outward → scale settle → locked */
-@keyframes mechanicalLockIn {
-    0% {
-        transform: translateX(0) scale(1);
-        background: rgba(255, 255, 255, 0.05);
-        box-shadow: none;
-        border-color: transparent;
-        color: var(--text-secondary);
-    }
-    40% {
-        transform: translateX(3px) scale(1.01);
-        box-shadow: 0 0 14px rgba(0, 212, 255, 0.45),
-                    inset 0 0 8px rgba(0, 212, 255, 0.15);
-        border-color: rgba(0, 212, 255, 0.3);
-        color: var(--accent);
-    }
-    70% {
-        transform: translateX(4px) scale(1.01);
-        box-shadow: 0 0 16px rgba(0, 212, 255, 0.35),
-                    inset 0 0 8px rgba(0, 212, 255, 0.12);
-        border-color: rgba(0, 212, 255, 0.45);
-    }
-    100% {
-        transform: translateX(3px) scale(1);
-        background: rgba(0, 212, 255, 0.12);
-        box-shadow: 0 0 12px rgba(0, 212, 255, 0.3),
-                    inset 0 0 8px rgba(0, 212, 255, 0.12),
-                    -1px 0 4px rgba(0, 212, 255, 0.2);
-        border-color: rgba(0, 212, 255, 0.5);
-        color: var(--accent);
-        font-weight: 600;
-    }
+.nav-link.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 24px;
+    background: var(--accent);
+    border-radius: 3px;
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.6);
 }
 
 .sidebar-divider {
-    margin: 16px 0;
-    border-top: 1px solid rgba(0, 212, 255, 0.1);
+    margin: calc(var(--spacing) * 2) 12px;
+    border: none;
+    border-top: 1px solid rgba(48, 48, 48, 0.4);
 }
 
 .sidebar::-webkit-scrollbar {
@@ -254,29 +241,8 @@ hr {
 }
 
 .sidebar::-webkit-scrollbar-thumb {
-    background: rgba(0, 212, 255, 0.2);
+    background: var(--border);
     border-radius: 4px;
-}
-
-.sidebar::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 212, 255, 0.3);
-}
-
-/* Respect reduced motion preference */
-@media (prefers-reduced-motion: reduce) {
-    .nav-link {
-        transition: none !important;
-    }
-    
-    .nav-link.active {
-        animation: none !important;
-        transform: none;
-        background: rgba(0, 212, 255, 0.12);
-        border-color: rgba(0, 212, 255, 0.5);
-        box-shadow: inset 0 0 8px rgba(0, 212, 255, 0.1);
-        color: var(--accent);
-        font-weight: 600;
-    }
 }
 
 /* ============================================================================
@@ -891,6 +857,41 @@ hr {
 }
 
 /* ============================================================================
+   SIDEBAR NAVIGATION ANIMATION
+   ============================================================================ */
+
+@keyframes nav-focus {
+    0% {
+        opacity: 0.8;
+        transform: translateX(4px);
+        box-shadow: 
+            inset 0 0 12px rgba(0, 212, 255, 0.4),
+            0 0 24px rgba(0, 212, 255, 0.5),
+            0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: translateX(10px);
+        box-shadow: 
+            inset 0 0 16px rgba(0, 212, 255, 0.5),
+            0 0 28px rgba(0, 212, 255, 0.6),
+            0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(8px);
+        box-shadow: 
+            inset 0 0 8px rgba(0, 212, 255, 0.2),
+            0 0 16px rgba(0, 212, 255, 0.3),
+            0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+}
+
+.nav-link.active.animating {
+    animation: nav-focus 300ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* ============================================================================
    RESPONSIVE DESIGN
    ============================================================================ */
 
@@ -1046,6 +1047,22 @@ hr {
     * {
         animation-duration: 0.01ms !important;
         transition-duration: 0.01ms !important;
+    }
+
+    .nav-link {
+        transition: color 150ms ease, background 150ms ease, border 150ms ease;
+    }
+
+    .nav-link.active {
+        transform: translateX(4px);
+        box-shadow: 
+            0 0 8px rgba(0, 212, 255, 0.2),
+            0 2px 6px rgba(0, 0, 0, 0.2);
+        animation: none !important;
+    }
+
+    .nav-link.active::before {
+        box-shadow: none;
     }
 }
 
